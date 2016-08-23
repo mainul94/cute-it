@@ -1,4 +1,5 @@
 @extends('layouts.base')
+@section('title')Not Found ! @endsection
 @section('body_class')nav-md @endsection
 @section('body')
     <div class="container body">
