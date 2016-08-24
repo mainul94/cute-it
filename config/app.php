@@ -164,7 +164,12 @@ return [
          */
         Bican\Roles\RolesServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class
+        Intervention\Image\ImageServiceProvider::class,
+
+        /**
+         * Custon Provider for this Project
+         */
+        App\Providers\ViewCustomProvider::class
 
     ],
 

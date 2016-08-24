@@ -39,6 +39,8 @@
 <script src="{{ asset('vendors/fastclick/lib/fastclick.js') }}"></script>
 <!-- NProgress -->
 <script src="{{ asset('vendors/nprogress/nprogress.js') }}"></script>
+<!-- Smart Resize -->
+<script src="{{ asset('js/smartresize.js') }}"></script>
 
 <!-- Custom Theme Scripts -->
 <script src="{{ asset('js/custom.js') }}"></script>
