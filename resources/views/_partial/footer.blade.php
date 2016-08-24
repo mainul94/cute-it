@@ -8,7 +8,7 @@
 ?>
 <footer>
     <div class="pull-right">
-        Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+        Control Panel - Build by <a href="https://techbeeo.com">TechBeeo Software Ltd.</a>
     </div>
     <div class="clearfix"></div>
 </footer>

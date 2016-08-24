@@ -22,7 +22,7 @@
     <!-- Font Awesome -->
     <link href="{{ asset('vendors/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
     <!-- NProgress -->
-    <link href="{!! 'vendors/nprogress/nprogress.css' !!}" rel="stylesheet">
+    <link href="{!! asset('vendors/nprogress/nprogress.css') !!}" rel="stylesheet">
 
     @yield('head')
     <!-- Custom Theme Style -->
@@ -34,7 +34,7 @@
 <!-- jQuery -->
 <script src="{{ asset('vendors/jquery/dist/jquery.min.js') }}"></script>
 <!-- Bootstrap -->
-<script src="{{ 'vendors/bootstrap/dist/js/bootstrap.min.js' }}"></script>
+<script src="{{ asset('vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 <!-- FastClick -->
 <script src="{{ asset('vendors/fastclick/lib/fastclick.js') }}"></script>
 <!-- NProgress -->

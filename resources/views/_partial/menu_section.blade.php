@@ -12,29 +12,49 @@ $menus = collect([
         'link'=>'',
         'menu' => collect([
             collect([
-                'title'=>'Home',
-                'link'=>'',
-                'icon' => 'fa fa-photo',
+                'title'=>'Dashboard',
+                'link'=>'dashboard',
+                'icon' => 'fa fa-dashboard',
                 'label_class' => 'label label-success pull-right',
                 'label' => 'New'
             ]),
             collect([
-                'title'=>'Forms',
-                'link'=>'',
-                'icon' => 'fa fa-home',
+                'title'=>'Roles',
+                'icon' => 'fa fa-cogs',
                 'label_class' => 'fa fa-chevron-down',
                 'label' => '',
                 'children' => collect([
                     collect([
-                        'title'=>'General Form',
-                        'link'=>'/home',
-                        'icon' => '',
-                        'label_class' => '',
-                        'label' => '',
-                        'children' => collect([])
+                        'title'=>'Roles',
+                        'link'=>'admin/role',
+                        'label_class' => 'label label-success pull-right',
+                        'label' => 'All'
                     ]),
                     collect([
-                        'title'=>'Advanced Components'
+                        'title'=>'Create Role',
+                        'link'=>'admin/role/create',
+                        'label_class' => 'label label-info pull-right',
+                        'label' => 'New'
+                    ])
+                ])
+            ]),
+            collect([
+                'title'=>'Permissions',
+                'icon' => 'fa fa-user-secret',
+                'label_class' => 'fa fa-chevron-down',
+                'label' => '',
+                'children' => collect([
+                    collect([
+                        'title'=>'Permissions',
+                        'link'=>'admin/permission',
+                        'label_class' => 'label label-success pull-right',
+                        'label' => 'All'
+                    ]),
+                    collect([
+                        'title'=>'Create Permission',
+                        'link'=>'admin/permission/create',
+                        'label_class' => 'label label-info pull-right',
+                        'label' => 'New'
                     ])
                 ])
             ])
