@@ -2,11 +2,15 @@
 
 namespace App\Providers;
 
+use Collective\Html\FormFacade as Form;
 use Collective\Html\HtmlFacade as HTML;
 use Illuminate\Support\ServiceProvider;
 
 class ViewCustomProvider extends ServiceProvider
 {
+
+    use LeftColMenu;
+
     /**
      * Bootstrap the application services.
      *
@@ -18,45 +22,22 @@ class ViewCustomProvider extends ServiceProvider
          * Added menuGenerate Function in Html builder
          */
         HTML::macro('menuGenerator', function ($menus) {
-            $menuHtml = '';
-            foreach ($menus as $menu) {
-                $menuNode = '<div class="menu_section">';
-                $menuNode .= '<h3>'.$menu->get('title').'</h3>';
-                if ($menu->get('menu')) {
-                    $menuNode .= '<ul class="nav side-menu">';
-                    $menuNode .= ViewCustomProvider::genarateMenuItems($menu->get('menu'));
-                    $menuNode .= '</ul>';
-                }
-                $menuNode .= '</div>';
-                $menuHtml .= $menuNode;
-            }
-            return $menuHtml;
+            return ViewCustomProvider::menuGenerator($menus);
         });
-    }
 
-
-    /**
-     * Generate Menu Item
-     * @param $menus
-     * @return string
-     */
-    public static function genarateMenuItems($menus)
-    {
-        $html = '';
-        foreach ($menus as $menu) {
-            $html .= '<li><a '.($menu->get('link')? ' href="'.url($menu->get('link')).'"':'').'><i class="'
-            . $menu->get('icon').'"></i> '. $menu->get('title').
-                ($menu->get('label_class')?' <span class="'.$menu->get('label_class').'">'. $menu->get('label').'</span>':
-                    ($menu->get('children') && $menu->get('children')->count() ?'<span class="fa fa-chevron-down"></span>':'')).'</a>';
-            if ($menu->get('children')) {
-                $html .= '<ul class="nav child_menu">';
-                $html .= ViewCustomProvider::genarateMenuItems($menu->get('children'));
-                $html .= '</ul>';
+        /**
+         * Delete Record
+         */
+        HTML::macro('delete',function ($action,$id, $label = 'Delete',$style='icon',$class='text-danger')
+        {
+            $form = Form::open(['action' => [$action,$id], 'method' => 'delete', 'id'=>'deleted_form_'.$id, 'style'=>'display:inline']);
+            if ($style == 'icon') {
+                $form .= "<a href='#' class='confirm $class' data-id=\"deleted_form_$id\"><i class=\"fa fa-trash\"></i></a>";//Form::submit('',['class'=>'btn btn-danger']);
+            }else{
+                $form .= Form::submit($label,['class'=>'btn btn-danger']);
             }
-            $html .= '</li>';
-        }
-
-        return $html;
+            return $form.=Form::close();
+        });
     }
 
     /**
@@ -68,4 +49,6 @@ class ViewCustomProvider extends ServiceProvider
     {
         //
     }
+
+
 }

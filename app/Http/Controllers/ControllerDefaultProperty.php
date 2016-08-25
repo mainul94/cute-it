@@ -12,12 +12,20 @@ namespace App\Http\Controllers;
 
 trait ControllerDefaultProperty
 {
-    protected $paginate_per_page;
-    protected $paginate_start_from;
 
-    public function __construct()
+    /**
+     * @return int|mixed
+     */
+    public function paginate_per_page()
     {
-        $this->paginate_per_page = request()->get('per_page') || 15;
-        $this->paginate_start_from = request()->get('pages') || 0;
+        return request()->get('per_page')?request()->get('per_page'): 20;
+    }
+
+    /**
+     * @return int|mixed
+     */
+    public function paginate_start_from()
+    {
+        return request()->get('pages')?request()->get('pages'): 0;
     }
 }

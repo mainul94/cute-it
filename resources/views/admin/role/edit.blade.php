@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: mainul
- * Date: 8/24/16
- * Time: 4:27 PM
+ * Date: 8/25/16
+ * Time: 2:32 PM
  */
 ?>
 @extends('layouts.admin')
@@ -12,10 +12,10 @@
         <div class="col-md-10">
             <div class="x_panel">
                 <div class="x_title">
-                    Create Role
+                    Edit Role
                 </div>
                 <div class="x_content">
-                    {!! Form::open(['action'=>'RoleController@store', 'class'=>'form-horizontal']) !!}
+                    {!! Form::model($id,['action'=>['RoleController@update',$id->id], 'method'=>'PATCH', 'class'=>'form-horizontal']) !!}
                     @include('admin.role._form')
                     {!! Form::close() !!}
                 </div>

@@ -14,6 +14,14 @@
     </div>
 </div>
 
+<div class="form-group {!! $errors->has('slug')? 'has-error':'' !!}">
+    {!! Form::label('slug','Slug *',['class'=>'control-label col-md-3 required']) !!}
+    <div class="col-md-7">
+        {!! Form::text('slug', null, ['class'=>'form-control col-md-7 col-xs-12']) !!}
+        {!! $errors->first('slug','<span class="help-block">:message</span>') !!}
+    </div>
+</div>
+
 <div class="form-group {!! $errors->has('level')? 'has-error':'' !!}">
     {!! Form::label('level','Level',['class'=>'control-label col-md-3']) !!}
     <div class="col-md-7">
@@ -36,8 +44,8 @@
 
 @section('footer_script')
     <!-- include summernote css/js-->
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
+    <link href="{!! asset('vendors/summernote/css/summernote.css') !!}" rel="stylesheet">
+    <script src="{!! asset('vendors/summernote/js/summernote.js') !!}"></script>
     <script>
         $('[name=description]').summernote({
             height:200

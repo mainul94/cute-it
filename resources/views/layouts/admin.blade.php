@@ -120,6 +120,14 @@
                     @include('_partial.page_title',['isSearch'=>session('isSearch') || 1])
 
                     <div class="clearfix"></div>
+                    @if($errors->all())
+                        @include('_partial.error_print')
+                        <div class="clearfix"></div>
+                    @endif
+                    @if(!empty(session()->has('message')))
+                        @include('_partial.message_print')
+                        <div class="clearfix"></div>
+                    @endif
                     @yield('content')
                 </div>
             </div>
@@ -127,9 +135,46 @@
 
 
             <!-- footer content -->
-            @include('_partial.footer')
-            <!-- /footer content -->
+        @include('_partial.footer')
+        <!-- /footer content -->
 
         </div>
     </div>
+@endsection
+@section('head')
+    <link rel="stylesheet" href="{!! asset('vendors/sweetalert2/dist/sweetalert2.min.css') !!}">
+    <link rel="stylesheet" href="{!! asset('css/admin_customize.css') !!}">
+@endsection
+@section('footer_script')
+    <script src="{!! asset('vendors/sweetalert2/dist/sweetalert2.min.js') !!}"></script>
+
+@endsection
+@section('script_call')
+    <script>
+        $(document).ready(function () {
+            $('[data-id^="deleted_form_"]').click(function () {
+                var $me = $(this);
+                function deleteFun() {
+                    $me.parents('form#'+$me.data('id')).submit()
+                }
+
+                swal({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then(function() {
+                    deleteFun();
+                    swal(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                    );
+                });
+            });
+        });
+    </script>
 @endsection

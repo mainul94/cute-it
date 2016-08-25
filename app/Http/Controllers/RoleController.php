@@ -2,90 +2,42 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Bican\Roles\Models\Role;
 
-use App\Http\Requests;
 
 class RoleController extends Controller
 {
 
-    use ControllerDefaultProperty;
+    use ControllerDefaultProperty, CommonController;
 
-    protected $view_dir = 'admin.role.';
+
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * RoleController constructor.
      */
-    public function index()
+    public function __construct()
     {
-        //
+        $this->view_dir = 'admin.role.';
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Set Model for user this Controller
+     * @return Role
      */
-    public function create()
-    {
-        return view($this->view_dir.'create');
+    protected function model () {
+       return new Role();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $this->validate($request, ['name' => 'required']);
-    }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param null $data
+     * @return array
      */
-    public function show($id)
-    {
-        //
+    protected function validate_rules($data = null) {
+        return [
+            'name' => 'Required',
+            'slug' => 'Required|Unique:roles'.($data && $data->id?',slug,'.$data->id:'')
+        ];
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
