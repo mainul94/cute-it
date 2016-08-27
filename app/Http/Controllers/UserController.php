@@ -14,6 +14,7 @@ class UserController extends Controller
     public function __construct()
     {
         $this->view_dir = 'admin.user.';
+        $this->middleware('role:administrator|admin');
     }
 
     public function model()

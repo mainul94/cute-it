@@ -13,6 +13,7 @@ class PermissionController extends Controller
     public function __construct()
     {
         $this->view_dir = 'admin.permission.';
+        $this->middleware('role:administrator');
     }
 
 

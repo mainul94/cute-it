@@ -45,6 +45,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        if ($e instanceof \Bican\Roles\Exceptions\RoleDeniedException) {
+            // you can for example flash message, redirect...
+            return abort(403, 'Unauthorized action.');
+        }
+
         return parent::render($request, $e);
     }
 }
