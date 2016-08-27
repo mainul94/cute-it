@@ -52,20 +52,21 @@ trait CommonController
      */
     public function store(Request $request)
     {
-        $this->validate($request,$this->validate_rules($this->model()));
+        $model = $this->model();
+        $this->validate($request,$this->validate_rules($model));
 
         if (!method_exists(__CLASS__, 'model')) {
             return redirect()->back()->with('message', ['type'=>'danger','msg'=>'method "model" doesn\'t exist for class"' . __CLASS__ .'"']);
         }
 
         if (method_exists(__CLASS__, 'beforeSave')) {
-            $this->beforeSave($this->model(), $request);
+            $this->beforeSave($model, $request);
         }
 
-        $this->model()->fill($request->all())->save();
+        $model->fill($request->all())->save();
 
         if (method_exists(__CLASS__, 'afterSave')) {
-            $this->afterSave($this->model(), $request);
+            $this->afterSave($model, $request);
         }
 
         if (method_exists(__CLASS__, 'redirectAfterCreate')) {

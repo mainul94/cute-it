@@ -7,14 +7,14 @@
  */
 ?>
 @extends('layouts.admin')
-@section('title') Role list @endsection
+@section('title') Permission list @endsection
 @section('content')
     <div class="row">
         <div class="col-md-10">
             <div class="x_panel">
                 <div class="x_title">
-                    <h3>Role list
-                        <small><a class="btn btn-primary pull-right" href="{!! action('RoleController@create') !!}">New</a></small>
+                    <h3>Permission list
+                        <small><a class="btn btn-primary pull-right" href="{!! action('PermissionController@create') !!}">New</a></small>
                     </h3>
                 </div>
                 <div class="x_content">
@@ -35,9 +35,9 @@
                                 <td>{!! $row->name !!}</td>
                                 <td>{!! $row->slug !!}</td>
                                 <td class="text-center action-btn-wrapper">
-                                    <a class="text-success" href="{!! action('RoleController@show',$row->id) !!}"><i class="fa fa-eye"></i></a>
-                                    <a class="text-warning" href="{!! action('RoleController@edit',$row->id) !!}"><i class="fa fa-pencil-square-o"></i></a>
-                                    {!! Html::delete('RoleController@destroy',$row->id) !!}
+                                    <a class="text-success" href="{!! action('PermissionController@show',$row->id) !!}"><i class="fa fa-eye"></i></a>
+                                    <a class="text-warning" href="{!! action('PermissionController@edit',$row->id) !!}"><i class="fa fa-pencil-square-o"></i></a>
+                                    {!! Html::delete('PermissionController@destroy',$row->id) !!}
                                 </td>
                             </tr>
                         @endforeach

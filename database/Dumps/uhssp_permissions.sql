@@ -1,0 +1,12 @@
+INSERT INTO uhssp.permissions (name, slug, description, model, created_at, updated_at) VALUES ('Create User', 'create.user', '', '', '2016-08-27 04:57:33', '2016-08-27 04:57:33');
+INSERT INTO uhssp.permissions (name, slug, description, model, created_at, updated_at) VALUES ('Edit User', 'edit.user', '', '', '2016-08-27 04:58:08', '2016-08-27 04:58:08');
+INSERT INTO uhssp.permissions (name, slug, description, model, created_at, updated_at) VALUES ('Delete User', 'delete.user', '', '', '2016-08-27 04:58:24', '2016-08-27 04:58:24');
+INSERT INTO uhssp.permissions (name, slug, description, model, created_at, updated_at) VALUES ('Create Role', 'create.role', '', '', '2016-08-27 04:58:37', '2016-08-27 04:58:37');
+INSERT INTO uhssp.permissions (name, slug, description, model, created_at, updated_at) VALUES ('Edit Role', 'edit.role', '', '', '2016-08-27 04:58:59', '2016-08-27 04:58:59');
+INSERT INTO uhssp.permissions (name, slug, description, model, created_at, updated_at) VALUES ('Delete Role', 'delete.role', '', '', '2016-08-27 04:59:23', '2016-08-27 04:59:23');
+INSERT INTO uhssp.permissions (name, slug, description, model, created_at, updated_at) VALUES ('Create Permission', 'create.permission', '', '', '2016-08-27 05:00:00', '2016-08-27 05:00:00');
+INSERT INTO uhssp.permissions (name, slug, description, model, created_at, updated_at) VALUES ('Edit Permission', 'edit.permission', '', '', '2016-08-27 05:00:20', '2016-08-27 05:00:20');
+INSERT INTO uhssp.permissions (name, slug, description, model, created_at, updated_at) VALUES ('Delete Permission', 'delete.permission', '', '', '2016-08-27 05:00:36', '2016-08-27 05:00:36');
+INSERT INTO uhssp.permissions (name, slug, description, model, created_at, updated_at) VALUES ('View User', 'view.user', '', '', '2016-08-27 05:01:17', '2016-08-27 05:01:17');
+INSERT INTO uhssp.permissions (name, slug, description, model, created_at, updated_at) VALUES ('View Role', 'view.role', '', '', '2016-08-27 05:01:32', '2016-08-27 05:01:32');
+INSERT INTO uhssp.permissions (name, slug, description, model, created_at, updated_at) VALUES ('View Permission', 'view.permission', '', '', '2016-08-27 05:01:54', '2016-08-27 05:01:54');

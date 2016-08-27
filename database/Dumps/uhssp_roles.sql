@@ -1,0 +1,5 @@
+INSERT INTO uhssp.roles (name, slug, description, level, created_at, updated_at) VALUES ('Administrator', 'administrator', '', 1, '2016-08-27 05:15:32', '2016-08-27 05:15:32');
+INSERT INTO uhssp.roles (name, slug, description, level, created_at, updated_at) VALUES ('Admin', 'admin', '', 2, '2016-08-27 05:15:46', '2016-08-27 05:15:46');
+INSERT INTO uhssp.roles (name, slug, description, level, created_at, updated_at) VALUES ('Editor', 'editor', '', 3, '2016-08-27 05:16:14', '2016-08-27 05:16:14');
+INSERT INTO uhssp.roles (name, slug, description, level, created_at, updated_at) VALUES ('Author', 'author', '', 4, '2016-08-27 05:16:40', '2016-08-27 05:16:40');
+INSERT INTO uhssp.roles (name, slug, description, level, created_at, updated_at) VALUES ('Subscriber', 'subscriber', '', 5, '2016-08-27 05:17:52', '2016-08-27 05:17:52');

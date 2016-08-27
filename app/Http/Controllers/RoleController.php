@@ -40,4 +40,19 @@ class RoleController extends Controller
         ];
     }
 
+
+    /**
+     * @param Role $model
+     * @param $request
+     */
+    public function afterSave($model, $request)
+    {
+        $model->permissions()->sync($request->get('permission_id')?$request->get('permission_id'):[]);
+    }
+
+
+    public function afterUpdate ($model, $request)
+    {
+        $this->afterSave($model, $request);
+    }
 }

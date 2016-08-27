@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Bican\Roles\Models\Permission;
 use Collective\Html\FormFacade as Form;
 use Collective\Html\HtmlFacade as HTML;
 use Illuminate\Support\ServiceProvider;
@@ -37,6 +38,10 @@ class ViewCustomProvider extends ServiceProvider
                 $form .= Form::submit($label,['class'=>'btn btn-danger']);
             }
             return $form.=Form::close();
+        });
+
+        view()->composer('admin.role.*', function ($view) {
+           return $view->with('permissions', Permission::all());
         });
     }
 

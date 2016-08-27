@@ -22,11 +22,11 @@
     </div>
 </div>
 
-<div class="form-group {!! $errors->has('level')? 'has-error':'' !!}">
-    {!! Form::label('level','Level',['class'=>'control-label col-md-3']) !!}
+<div class="form-group {!! $errors->has('model')? 'has-error':'' !!}">
+    {!! Form::label('model','Model',['class'=>'control-label col-md-3']) !!}
     <div class="col-md-7">
-        {!! Form::text('level', null, ['class'=>'form-control col-md-7 col-xs-12']) !!}
-        {!! $errors->first('level','<span class="help-block">:message</span>') !!}
+        {!! Form::text('model', null, ['class'=>'form-control col-md-7 col-xs-12']) !!}
+        {!! $errors->first('model','<span class="help-block">:message</span>') !!}
     </div>
 </div>
 
@@ -37,8 +37,6 @@
         {!! $errors->first('description','<span class="help-block">:message</span>') !!}
     </div>
 </div>
-
-@include('admin.role._permission')
 
 <div class="col-xs-12">
     {!! Form::submit('Save',['class'=>'btn btn-info pull-right']) !!}
