@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\User;
 use Bican\Roles\Models\Permission;
 use Bican\Roles\Models\Role;
 use Illuminate\Routing\Router;
@@ -18,6 +19,7 @@ class RouteBindProvider extends ServiceProvider
     {
         $router->model('role', Role::class);
         $router->model('permission', Permission::class);
+        $router->model('user', User::class);
     }
 
     /**

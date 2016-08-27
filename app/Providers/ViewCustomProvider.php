@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Bican\Roles\Models\Permission;
+use Bican\Roles\Models\Role;
 use Collective\Html\FormFacade as Form;
 use Collective\Html\HtmlFacade as HTML;
 use Illuminate\Support\ServiceProvider;
@@ -42,6 +43,10 @@ class ViewCustomProvider extends ServiceProvider
 
         view()->composer('admin.role.*', function ($view) {
            return $view->with('permissions', Permission::all());
+        });
+
+        view()->composer('admin.user.*', function ($view) {
+           return $view->with('roles', Role::all());
         });
     }
 

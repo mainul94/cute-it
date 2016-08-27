@@ -38,14 +38,15 @@
     </div>
 </div>
 
-<div class="form-group {!! $errors->has('role_id')? 'has-error':'' !!}">
+{{--<div class="form-group {!! $errors->has('role_id')? 'has-error':'' !!}">
     {!! Form::label('role_id','Role',['class'=>'control-label col-md-3']) !!}
     <div class="col-md-7">
-        {!! Form::select('role_id[]',[], null, ['class'=>'form-control col-md-7 col-xs-12']) !!}
+        @php $roles = !empty($id) && $id->roles?$id->roles->lists('name','id'):[] @endphp
+        {!! Form::select('role_id[]',$roles, null, ['class'=>'form-control col-md-7 col-xs-12', 'multiple']) !!}
         {!! $errors->first('role_id','<span class="help-block">:message</span>') !!}
     </div>
-</div>
-
+</div>--}}
+@include('admin.user._roles')
 <div class="col-xs-12">
     {!! Form::submit('Save',['class'=>'btn btn-info pull-right']) !!}
 </div>
@@ -54,6 +55,6 @@
     @parent
     <script src="{!! asset('js/panel.js') !!}"></script>
     <script>
-        getvalueForSelect2('[name^=role_id]','roles',['id','name'],[],'id','name');
+//        getvalueForSelect2('[name^=role_id]','roles',['id','name'],[],'id','name');
     </script>
 @endsection

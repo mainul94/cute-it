@@ -21,13 +21,16 @@ class UserController extends Controller
         return new User();
     }
 
-
+    protected  $old_password = null;
     protected function validate_rules($data)
     {
+        if (!empty($data)) {
+            $this->old_password = $data->makeVisible('password')->password;
+        }
         return [
             'name' => 'Required',
-            'email' => 'Email|Unique:users,email'.($data && $data->id?',id,'.$data->id:''),
-            'password' => 'Required|Confirmed|Min:6|Max:32'
+            'email' => 'Email|Unique:users'.($data && $data->id?',email,'.$data->id:''),
+            'password' => 'Confirmed|Min:6|Max:32'.(empty($data)?'|Required':'')
         ];
     }
 
@@ -35,9 +38,13 @@ class UserController extends Controller
     public function afterSave($model, $request)
     {
         if ($request->get('password')) {
-            $model->fill(['password', bcrypt($request->get('password'))]);
-            $model->save();
+            $model->fill(['password'=>bcrypt($request->get('password'))]);
+        }else {
+            $model->fill(['password'=>$this->old_password]);
         }
+        $model->save();
+
+        $model->roles()->sync($request->get('role_id')?$request->get('role_id'):[]);
     }
 
 

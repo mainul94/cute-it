@@ -29,4 +29,14 @@ class User extends Authenticatable implements HasRoleAndPermissionContract
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    /**
+     * Get User Assigned Roles
+     * @return mixed
+     */
+    public function getRoleIdAttribute()
+    {
+        return $this->roles()->lists('role_id')->all();
+    }
 }

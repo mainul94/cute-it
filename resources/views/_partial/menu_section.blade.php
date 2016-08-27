@@ -19,6 +19,26 @@ $menus = collect([
                 'label' => 'New'
             ]),
             collect([
+                'title'=>'User',
+                'icon' => 'fa fa-users',
+                'label_class' => 'fa fa-chevron-down',
+                'label' => '',
+                'children' => collect([
+                    collect([
+                        'title'=>'Users',
+                        'link'=>action('UserController@index'),
+                        'label_class' => 'label label-success pull-right',
+                        'label' => 'All'
+                    ]),
+                    collect([
+                        'title'=>'Create Role',
+                        'link'=>action('UserController@create'),
+                        'label_class' => 'label label-info pull-right',
+                        'label' => 'New'
+                    ])
+                ])
+            ]),
+            collect([
                 'title'=>'Roles',
                 'icon' => 'fa fa-cogs',
                 'label_class' => 'fa fa-chevron-down',
