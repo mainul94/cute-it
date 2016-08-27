@@ -21,6 +21,10 @@ Route::group(['prefix'=>'admin'], function () {
     Route::resource('permission','PermissionController');
 });
 
+Route::group(['middleware'=>'auth'], function () {
+    Route::get('/api/getvalue/','APIController@getValue');
+    Route::get('/api/get-values/','APIController@getValues');
+});
 
 Route::auth();
 
