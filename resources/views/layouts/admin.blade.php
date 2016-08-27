@@ -143,10 +143,12 @@
 @endsection
 @section('head')
     <link rel="stylesheet" href="{!! asset('vendors/sweetalert2/dist/sweetalert2.min.css') !!}">
+    <link rel="stylesheet" href="{!! asset('vendors/select2/dist/css/select2.min.css') !!}">
     <link rel="stylesheet" href="{!! asset('css/admin_customize.css') !!}">
 @endsection
 @section('footer_script')
     <script src="{!! asset('vendors/sweetalert2/dist/sweetalert2.min.js') !!}"></script>
+    <script src="{!! asset('vendors/select2/dist/js/select2.full.min.js') !!}"></script>
 
 @endsection
 @section('script_call')

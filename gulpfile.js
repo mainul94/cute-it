@@ -17,5 +17,6 @@ elixir(function(mix) {
     // mix.sass('../src/scss/custom.scss');
     // mix.browserify('../src/js/custom.js','public/js/custom.js');
     // mix.browserify('../src/js/helpers/smartresize.js','public/js/smartresize.js');
+    mix.copy('resources/assets/src/js/helpers/panel.js','public/js/panel.js');
     // mix.copy('resources/assets/vendors/','public/vendors/');
 });
