@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Country extends Model
 {
-	protected $fillable = ['title', 'slug', 'description'];
+	protected $fillable = ['title', 'slug', 'region_id', 'description'];
 
-	use CreateUpdateByRecord, RouteNameSlug;
+	use CreateUpdateByRecord, RouteNameSlug, CommonRelation;
 }

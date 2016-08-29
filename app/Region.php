@@ -8,5 +8,5 @@ class Region extends Model
 {
     protected $fillable = ['title', 'slug', 'description'];
 
-	use CreateUpdateByRecord, RouteNameSlug;
+	use CreateUpdateByRecord, RouteNameSlug, CommonRelation;
 }

@@ -7,14 +7,14 @@
  */
 ?>
 @extends('layouts.admin')
-@section('title') Region list @endsection
+@section('title') Country list @endsection
 @section('content')
     <div class="row">
         <div class="col-md-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h3>Region list
-                        <small><a class="btn btn-primary pull-right" href="{!! action('RegionController@create') !!}">New</a></small>
+                    <h3>Country list
+                        <small><a class="btn btn-primary pull-right" href="{!! action('CountryController@create') !!}">New</a></small>
                     </h3>
                 </div>
                 <div class="x_content">
@@ -24,6 +24,7 @@
                         <tr>
                             <th>#</th>
                             <th>Region</th>
+                            <th>Country</th>
                             <th>Slug</th>
                             <th>Created By</th>
                             <th>Updated By</th>
@@ -34,14 +35,15 @@
                         @foreach($rows as $sl=>$row)
                             <tr>
                                 <td>{!! $start + ++$sl !!}</td>
+                                <td>{!! $row->region->title or "" !!}</td>
                                 <td>{!! $row->title !!}</td>
                                 <td>{!! $row->slug !!}</td>
                                 <td>{!! $row->createdBy->name or "" !!}</td>
                                 <td>{!! $row->updatedBy->name or "" !!}</td>
                                 <td class="text-center action-btn-wrapper">
-                                    <a class="text-success" href="{!! action('RegionController@show',$row->slug) !!}"><i class="fa fa-eye"></i></a>
-                                    <a class="text-warning" href="{!! action('RegionController@edit',$row->slug) !!}"><i class="fa fa-pencil-square-o"></i></a>
-                                    {!! Html::delete('RegionController@destroy',$row->slug) !!}
+                                    <a class="text-success" href="{!! action('CountryController@show',$row->slug) !!}"><i class="fa fa-eye"></i></a>
+                                    <a class="text-warning" href="{!! action('CountryController@edit',$row->slug) !!}"><i class="fa fa-pencil-square-o"></i></a>
+                                    {!! Html::delete('CountryController@destroy',$row->slug) !!}
                                 </td>
                             </tr>
                         @endforeach

@@ -9,7 +9,7 @@
 <div class="form-group {!! $errors->has('region_id')?'has-error':'' !!}">
     {!! Form::label('region_id','Region *',['class'=>'control-label col-md-3 required']) !!}
     <div class="col-md-7">
-        @php $regions = !empty($id)?[]:[] @endphp
+        @php $regions = !empty($id) && $id->region? $id->region->lists('title','id'):[] @endphp
         {!! Form::select('region_id',$regions, null, ['class'=>'form-control col-md-7 col-xs-12']) !!}
         {!! $errors->first('region_id','<span class="help-block">:message</span>') !!}
     </div>
@@ -44,12 +44,16 @@
 </div>
 
 @section('footer_script')
+    @parent
     <!-- include summernote css/js-->
     <link href="{!! asset('vendors/summernote/css/summernote.css') !!}" rel="stylesheet">
     <script src="{!! asset('vendors/summernote/js/summernote.js') !!}"></script>
+    <script src="{!! asset('js/panel.js') !!}"></script>
     <script>
         $('[name=description]').summernote({
             height:200
         });
+
+        getvalueForSelect2('#region_id','regions',['id','title'],[],'id','title');
     </script>
 @endsection
