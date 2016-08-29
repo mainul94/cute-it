@@ -34,6 +34,7 @@ class CountryController extends Controller
 	{
 		return [
 			'title' => 'Required',
+			'region_id' => 'Required',
 			'slug' => 'Unique:roles'.($data && $data->id?',slug,'.$data->id:'')
 		];
 	}
