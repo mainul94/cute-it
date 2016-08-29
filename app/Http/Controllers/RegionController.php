@@ -33,7 +33,7 @@ class RegionController extends Controller
     protected function validate_rules(Region $data = null)
     {
         return [
-            'name' => 'Required',
+            'title' => 'Required',
             'slug' => 'Required|Unique:roles'.($data && $data->id?',slug,'.$data->id:'')
         ];
     }

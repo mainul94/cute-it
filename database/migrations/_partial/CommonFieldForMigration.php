@@ -29,8 +29,8 @@ trait CommonFieldForMigration
      */
     public function schemaCreateEndWith(Blueprint $table)
     {
-        $table->unsignedInteger('created_by');
-        $table->unsignedInteger('updated_by');
+        $table->unsignedInteger('created_by')->nullable();
+        $table->unsignedInteger('updated_by')->nullable();
         $table->timestamps();
         $table->softDeletes();
         $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');

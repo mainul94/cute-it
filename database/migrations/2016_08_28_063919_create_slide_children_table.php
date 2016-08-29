@@ -36,7 +36,6 @@ class CreateSlideChildrenTable extends Migration
      */
     public function down()
     {
-        $this->dropCommonForeignKey('slide_children');
         Schema::drop('slide_children');
     }
 }

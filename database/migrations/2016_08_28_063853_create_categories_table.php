@@ -37,7 +37,7 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        $this->dropCommonForeignKey('categories');
+//        $this->dropCommonForeignKey('categories');
         Schema::drop('categories');
     }
 }
