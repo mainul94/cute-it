@@ -88,6 +88,24 @@ $menus = collect([
                                                 'label' => 'New'
                                         ])
                                 ])
+                        ]),
+                        collect([
+                                'title'=>'Media',
+                                'icon' => 'fa fa-play-circle-o',
+                                'children'=>collect([
+                                        collect([
+                                            'title' =>'Media',
+                                                'link'=>action('MediaController@index'),
+                                                'label_class' => 'label label-success pull-right',
+                                                'label' => 'All'
+                                        ]),
+                                        collect([
+                                            'title' =>'Add Media',
+                                                'link'=>action('MediaController@create'),
+                                                'label_class' => 'label label-info pull-right',
+                                                'label' => 'New'
+                                        ])
+                                ])
                         ])
                 ])
         ]),
