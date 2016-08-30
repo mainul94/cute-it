@@ -30,8 +30,8 @@ $menus = collect([
                                         collect([
                                             'title' =>'Create Article',
                                                 'link'=>action('ArticleController@create'),
-                                                'label_class' => 'label label-success pull-right',
-                                                'label' => 'All'
+                                                'label_class' => 'label label-info pull-right',
+                                                'label' => 'New'
                                         ])
                                 ])
                         ]),
@@ -48,8 +48,8 @@ $menus = collect([
                                         collect([
                                             'title' =>'Create Category',
                                                 'link'=>action('CategoryController@create'),
-                                                'label_class' => 'label label-success pull-right',
-                                                'label' => 'All'
+                                                'label_class' => 'label label-info pull-right',
+                                                'label' => 'New'
                                         ])
                                 ])
                         ]),
@@ -66,8 +66,8 @@ $menus = collect([
                                         collect([
                                             'title' =>'Create Page',
                                                 'link'=>action('PageController@create'),
-                                                'label_class' => 'label label-success pull-right',
-                                                'label' => 'All'
+                                                'label_class' => 'label label-info pull-right',
+                                                'label' => 'New'
                                         ])
                                 ])
                         ]),
@@ -84,8 +84,8 @@ $menus = collect([
                                         collect([
                                             'title' =>'Create Slide',
                                                 'link'=>action('SlideController@create'),
-                                                'label_class' => 'label label-success pull-right',
-                                                'label' => 'All'
+                                                'label_class' => 'label label-info pull-right',
+                                                'label' => 'New'
                                         ])
                                 ])
                         ])

@@ -120,6 +120,6 @@ trait CommonRelation
 	 */
 	public function relatedArticles()
 	{
-		return $this->belongsToMany(Article::class,'article_article','related_id');
+		return $this->belongsToMany(Article::class,'article_article','article_id','related_id');
 	}
 }
