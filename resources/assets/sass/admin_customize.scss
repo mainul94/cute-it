@@ -9,3 +9,10 @@
       @include action-btn()
     }
 }
+
+.dropzone {
+  border: 5px dotted #e5e5e5 !important;
+}
+.dropzone.dz-clickable .dz-message, .dropzone.dz-clickable .dz-message * {
+  font-size: 1.5em;
+}

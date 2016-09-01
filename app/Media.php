@@ -22,9 +22,10 @@ class Media extends Model
 	{
 		$now = Carbon::now();
 		if ($data->isValid()) {
-			$dir = 'app/public/uploads/'.$now->year.'/'.$now->month.'/';
+			$dir = 'public/uploads/'.$now->year.'/'.$now->month.'/';
 			Storage::makeDirectory($dir);
-			$dir = storage_path($dir);
+			$dir = storage_path('app/'.$dir);
+			$path = str_replace(storage_path(), '', $dir);
 			if (in_array($data->getMimeType(), $this->mimType)) {
 				$image = Image::make($data->getRealPath());
 				$thumbnail = $image->resize(300,300, function ($constraint) {
@@ -36,17 +37,22 @@ class Media extends Model
 				$image->save($dir.$data->getClientOriginalName());
 				$thumbnail->save($dir.'300x300_'.$data->getClientOriginalName());
 				$preview->save($dir.'700x700_'.$data->getClientOriginalName());
+				list($width, $height) = getimagesize($data);
+				$this->attributes['file_dimension'] = $width . 'x' . $height;
+			}else {
+				Storage::put($path.$data->getClientOriginalName(),file_get_contents($data->getRealPath()));
 			}
-			$path = str_replace(storage_path(), '', $dir);
 			$this->attributes['url'] = $path.$data->getClientOriginalName();
 			$this->attributes['thumbnail_url'] = !empty($thumbnail)? $path.'300x300_'.$data->getClientOriginalName():null;
 			$this->attributes['preview_rul'] = !empty($preview)? $path.'700x700_'.$data->getClientOriginalName():null;
 
 			$this->attributes['file_name'] = $data->getClientOriginalName();
 			$this->attributes['file_type'] = $data->getClientOriginalExtension();
-			$this->attributes['title'] = str_replace($data->getClientOriginalExtension(), '' ,
-				$data->getClientOriginalName());
+			$this->attributes['file_size'] = get_size_to_user_max_gb($data->getClientSize());
+			$this->attributes['title'] = title_case(str_replace($data->getClientOriginalExtension(), '',
+				$data->getClientOriginalName()));
 			$this->attributes['alt'] = $this->attributes['title'];
+
 		}
 	}
 }

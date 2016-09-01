@@ -25,7 +25,7 @@ trait LeftColMenu
             $menuNode .= '<h3>'.$menu->get('title').'</h3>';
             if ($menu->get('menu')) {
                 $menuNode .= '<ul class="nav side-menu">';
-                $menuNode .= ViewCustomProvider::genarateMenuItems($menu->get('menu'));
+                $menuNode .= self::genarateMenuItems($menu->get('menu'));
                 $menuNode .= '</ul>';
             }
             $menuNode .= '</div>';
@@ -50,7 +50,7 @@ trait LeftColMenu
                     ($menu->get('children') && $menu->get('children')->count() ?'<span class="fa fa-chevron-down"></span>':'')).'</a>';
             if ($menu->get('children')) {
                 $html .= '<ul class="nav child_menu">';
-                $html .= ViewCustomProvider::genarateMenuItems($menu->get('children'));
+                $html .= self::genarateMenuItems($menu->get('children'));
                 $html .= '</ul>';
             }
             $html .= '</li>';
