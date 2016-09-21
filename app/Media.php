@@ -4,8 +4,10 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
+use Storage;
 use Intervention\Image\Facades\Image;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\File\File;
 
 class Media extends Model
 {
@@ -54,5 +56,24 @@ class Media extends Model
 			$this->attributes['alt'] = $this->attributes['title'];
 
 		}
+	}
+
+	public function scopeDirectory($query, Request $request)
+	{
+		return $query->where([['url','like',$request->get('directory').'%']]);
+	}
+
+	public function scopeType($query, Request $request)
+	{
+		if ($request->get('type')) {
+			$query->where('file_type',$request->get('type')); // ToDo Change file_type field to media_type after create media type column.
+		}
+		return $query;
+	}
+
+	public function deleteFiles()
+	{
+		Storage::delete([str_replace('/app/','',$this->url), str_replace('/app/','',$this->thumbnail_url),
+			str_replace('/app/','',$this->preview_rul)]);
 	}
 }

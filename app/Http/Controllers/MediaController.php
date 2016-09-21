@@ -11,6 +11,13 @@ class MediaController extends Controller
 {
     protected $view_dir = 'admin.media.';
 
+    protected $request;
+
+    public function __construct(Request $request)
+    {
+        $this->request = $request;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +25,8 @@ class MediaController extends Controller
      */
     public function index()
     {
-        //
+        $files = Media::directory($this->request)->type($this->request)->paginate();
+        return view($this->view_dir.'list_view', compact('files'));
     }
 
     /**
@@ -53,40 +61,43 @@ class MediaController extends Controller
      */
     public function show($id)
     {
-        //
+        return view($this->view_dir.'view',compact('id'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Media  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Media $id)
     {
-        //
+        return view($this->view_dir.'edit',compact('id'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Media $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Media $id)
     {
-        //
+        $id->fill($request->all())->save();
+        return redirect()->back()->with('message', ['type' => 'success', 'msg' => 'Successfully Updated']);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  object  Media $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Media $id)
     {
-        //
+        $id->deleteFiles();
+        $id->delete();
+        return redirect()->action(class_basename(__CLASS__ . '@index'))->with('message', ['type' => 'danger', 'msg' => 'File Deleted']);
     }
 }
