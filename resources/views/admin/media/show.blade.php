@@ -37,7 +37,7 @@
 						   aria-describedby="url-addon">
 					<a href="#" class="input-group-addon" id="url-addon"  data-toggle="tooltip"
 					   data-placement="bottom" title="Copy" data-clipboard-target="#url">
-						<i class="glyphicon glyphicon-copy"></i></a>
+						<i class="fa fa-copy"></i></a>
 				</div>
 			</div>
 			<div>
@@ -48,7 +48,7 @@
 						   aria-describedby="preview_url-addon">
 					<a href="#" class="input-group-addon" id="preview_url-addon"  data-toggle="tooltip"
 					   data-placement="bottom" title="Copy" data-clipboard-target="#preview_url">
-						<i class="glyphicon glyphicon-copy"></i></a>
+						<i class="fa fa-copy"></i></a>
 				</div>
 			</div>
 			<div>
@@ -59,7 +59,7 @@
 						   aria-describedby="thumbnail_url-addon">
 					<a href="#" class="input-group-addon" id="thumbnail_url-addon"  data-toggle="tooltip"
 					   data-placement="bottom" title="Copy" data-clipboard-target="#thumbnail_url">
-						<i class="glyphicon glyphicon-copy"></i></a>
+						<i class="fa fa-copy"></i></a>
 				</div>
 			</div>
 		</div>
