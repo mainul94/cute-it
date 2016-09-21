@@ -37,7 +37,7 @@
 						<div class="caption">
 							<p><strong>{!! $file->title !!}</strong>
 							</p>
-							<p>{!! $file->slug !!}</p>
+							<p>{!! $file->caption !!}</p>
 						</div>
 					</div>
 				</div>

@@ -11,10 +11,12 @@
 @section('title') Edit Media @endsection
 @section('content')
 	<div class="row">
-		{!! Form::model($id,['action' => ['MediaController@update', $id->slug], 'method' => 'PATCH']) !!}
 		<div class="col-sm-4 pull-right bg-info">
 			<br>
-			<div class="col-xs-12">{!! Form::submit('Save', ['class' => 'btn btn-sm btn-primary pull-right']) !!}</div>
+			<div class="col-xs-12">
+				<a class="btn btn-info" href="{!! action('MediaController@edit', $id->slug) !!}" title="Edit">Edit</a>
+				{!! Html::delete('MediaController@destroy',$id->slug, 'button', 'btn btn-danger') !!}
+			</div>
 			<p>
 				<strong class="col-xs-4">Filename: </strong>
 				<span class="col-xs-8">{!! $id->file_name !!}</span>
@@ -63,44 +65,28 @@
 		</div>
 		<div class="col-sm-8">
 			<div class="row">
-				<div class="col-xs-12 form-group {!! $errors->has('title')?'has-error':'' !!}">
-					{!! Form::label('title', 'Title', ['class' => 'col-sm-4']) !!}
-					<div class="col-xs-10">
-						{!! Form::text('title', null, ['class' => 'form-control']) !!}
-						{!! $errors->first('title', '<span class="help-block">:message</span>') !!}
-					</div>
+				<div class="col-xs-12">
+					<h4>Title :</h4>
+					<div>{!! $id->title !!}</div>
 				</div>
-				<div class="col-xs-12 form-group {!! $errors->has('caption')?'has-error':'' !!}">
-					{!! Form::label('caption', 'Caption', ['class' => 'col-sm-4']) !!}
-					<div class="col-xs-10">
-						{!! Form::textarea('caption', null, ['class' => 'form-control', 'rows'=>4]) !!}
-						{!! $errors->first('caption', '<span class="help-block">:message</span>') !!}
-					</div>
+				<div class="col-xs-12">
+					<h4>Caption :</h4>
+					<div>{!! $id->caption !!}</div>
 				</div>
-				<div class="col-xs-12 form-group {!! $errors->has('caption')?'has-error':'' !!}">
-					<div class="col-xs-12"><strong>Image</strong></div>
-					<div class="col-xs-10">
-						<img class="img-responsive img-thumbnail" src="{!! $id->thumbnail_url?asset($id->thumbnail_url):asset($id->url) !!}" alt="image" />
-					</div>
+				<div class="col-xs-12">
+					<h4>Image :</h4>
+					<div><img class="img-responsive img-thumbnail" src="{!! $id->thumbnail_url?asset($id->thumbnail_url):asset($id->url) !!}" alt="image" /></div>
 				</div>
-
-				<div class="col-xs-12 form-group {!! $errors->has('description')?'has-error':'' !!}">
-					{!! Form::label('description', 'Description', ['class' => 'col-sm-4']) !!}
-					<div class="col-xs-10">
-						{!! Form::textarea('description', null, ['class' => 'form-control']) !!}
-						{!! $errors->first('description', '<span class="help-block">:message</span>') !!}
-					</div>
+				<div class="col-xs-12">
+					<h4>Description :</h4>
+					<div>{!! $id->description !!}</div>
 				</div>
-				<div class="col-xs-12 form-group {!! $errors->has('alt')?'has-error':'' !!}">
-					{!! Form::label('alt', 'Alternative Text', ['class' => 'col-sm-4']) !!}
-					<div class="col-xs-10">
-						{!! Form::text('alt', null, ['class' => 'form-control']) !!}
-						{!! $errors->first('alt', '<span class="help-block">:message</span>') !!}
-					</div>
+				<div class="col-xs-12">
+					<h4>Alternative Text :</h4>
+					<div>{!! $id->alt !!}</div>
 				</div>
 			</div>
 		</div>
-		{!! Form::close() !!}
 	</div>
 @endsection
 @section('script_call')

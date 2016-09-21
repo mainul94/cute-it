@@ -61,7 +61,7 @@ class MediaController extends Controller
      */
     public function show($id)
     {
-        return view($this->view_dir.'view',compact('id'));
+        return view($this->view_dir.'show',compact('id'));
     }
 
     /**

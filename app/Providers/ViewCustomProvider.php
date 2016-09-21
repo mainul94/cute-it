@@ -30,14 +30,15 @@ class ViewCustomProvider extends ServiceProvider
         /**
          * Delete Record
          */
-        HTML::macro('delete',function ($action,$id, $label = 'Delete',$style='icon',$class='text-danger')
+        HTML::macro('delete',function ($action,$id, $style='icon',$class='text-danger', $label = 'Delete')
         {
             $form = Form::open(['action' => [$action,$id], 'method' => 'delete', 'id'=>'deleted_form_'.$id, 'style'=>'display:inline']);
-            if ($style == 'icon') {
-                $form .= "<a href='#' class='confirm $class' data-id=\"deleted_form_$id\"><i class=\"fa fa-trash\"></i></a>";//Form::submit('',['class'=>'btn btn-danger']);
-            }else{
-                $form .= Form::submit($label,['class'=>'btn btn-danger']);
-            }
+//            if ($style == 'icon') {
+                $form .= "<a href='#' class='confirm $class' data-id=\"deleted_form_$id\">".
+                    ($style == 'icon'?"<i class=\"fa fa-trash\"></i>":$label)."</a>";
+//            }else{
+//                $form .= Form::submit($label,['class'=>'btn btn-danger']);
+//            }
             return $form.=Form::close();
         });
 
