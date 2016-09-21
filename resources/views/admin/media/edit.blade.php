@@ -20,7 +20,13 @@
 			</p>
 			<p>
 				<strong class="col-xs-4">URL: </strong>
-				<span class="col-xs-12"><input class="form-control" readonly type="text" value="{!! asset($id->url) !!}"></span>
+				<span class="col-xs-12">
+					<input id="url" class="form-control" type="text" value="{!! asset($id->url) !!}">
+					<!-- Trigger -->
+					<button class="btn" type="button" data-clipboard-action="copy" data-clipboard-target="#url">
+						Copy to clipboard
+					</button>
+				</span>
 			</p>
 			<p></p>
 		</div>
@@ -37,4 +43,10 @@
 		</div>
 		{!! Form::close() !!}
 	</div>
+@endsection
+@section('script_call')
+	@parent
+	<script>
+		var clipboard = new Clipboard('.btn');
+	</script>
 @endsection
