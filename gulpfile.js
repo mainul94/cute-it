@@ -20,5 +20,6 @@ elixir(function(mix) {
     mix.copy('resources/assets/src/js/helpers/panel.js','public/js/panel.js');
     mix.copy('resources/assets/src/js/clipboard/clipboard.min.js','public/js/clipboard.min.js');
     mix.copy('resources/assets/src/js/clipboard/clipboard.js','public/js/clipboard.js');
+    mix.copy('resources/assets/src/js/file_manager/filemanager.js','public/js/filemanager.js');
     // mix.copy('resources/assets/vendors/','public/vendors/');
 });

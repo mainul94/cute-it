@@ -8,7 +8,7 @@
 ?>
 <div class="form-group {!! $errors->has('feature_image')?'has-error':'' !!}">
     <div class="col-xs-12">
-		<button class="btn btn-sm" type="button" id="">Brows</button>
+		<button class="btn btn-sm" type="button" id="feature_image_brows">Brows</button>
 		{!! Form::hidden('feature_image', null, ['class'=>'form-control col-md-7 col-xs-12']) !!}
 		{!! Form::text('feature_caption', null, ['class'=>'form-control col-md-7 col-xs-12', 'placeholder' => 'Caption']) !!}
 		{!! $errors->first('feature_image','<span class="help-block">:message</span>') !!}
@@ -55,5 +55,10 @@
 	<script src="{!! asset('vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js') !!}"></script>
 	<script>
 		$('.bg_color').colorpicker();
+
+		var featureImage = $("#feature_image_brows").FileManager({
+			baseUrl:"{{ url('/') }}"
+		});
+
 	</script>
 @endsection

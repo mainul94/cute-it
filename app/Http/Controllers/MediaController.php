@@ -23,9 +23,12 @@ class MediaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $files = Media::directory($this->request)->type($this->request)->paginate();
+        if ($request->ajax()) {
+            return response()->json($files->toArray());
+        }
         return view($this->view_dir.'list_view', compact('files'));
     }
 
