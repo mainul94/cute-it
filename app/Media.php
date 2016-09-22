@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 use Storage;
 use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\File\File;
 
 class Media extends Model
 {
@@ -20,6 +19,10 @@ class Media extends Model
 	protected $mimType = ['image/jpeg','image/pjpeg','image/x-jps','image/png','image/tiff','image/x-tiff',	'image/bmp','image/gif'];
 
 
+	/**
+	 * File Upload Process
+	 * @param $data
+	 */
 	public function setFileAttribute($data)
 	{
 		$now = Carbon::now();
@@ -58,11 +61,23 @@ class Media extends Model
 		}
 	}
 
+	/**
+	 * Get files under a directory
+	 * @param $query
+	 * @param Request $request
+	 * @return mixed
+	 */
 	public function scopeDirectory($query, Request $request)
 	{
 		return $query->where([['url','like',$request->get('directory').'%']]);
 	}
 
+	/**
+	 * filter media by type
+	 * @param $query
+	 * @param Request $request
+	 * @return mixed
+	 */
 	public function scopeType($query, Request $request)
 	{
 		if ($request->get('type')) {
@@ -71,6 +86,9 @@ class Media extends Model
 		return $query;
 	}
 
+	/**
+	 * Delete files
+	 */
 	public function deleteFiles()
 	{
 		Storage::delete([str_replace('/app/','',$this->url), str_replace('/app/','',$this->thumbnail_url),
