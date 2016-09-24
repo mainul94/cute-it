@@ -4,12 +4,15 @@
 
 FileManager = {
 	init:function(args){
-		this.args = args;
-		this.args['get_url'] = args.get_url || 'http://localhost:8000/admin/media';
-		this.args['selector'] = this.args.selector || '.file';
-		this.args['target'] = args.target || $(this.args.selector).data('target-field');
-		this.make();
-		return this.$modelWrapper
+		this.args = {};
+		this.args['baseUrl'] = window.location.host;
+		this.args['get_url'] = this.args.baseUrl+'/media';
+		this.args['selector'] = '.file';
+		this.args['target'] = $(this.args.selector).data('target-field');
+		this.args['multiple'] = false;
+		this.args['multiple_val_attr'] = 'data-url';
+		this.args = $.extend(this.args, args);
+		this.make()
 	},
 	make:function () {
 		this.$body = $(this.args.selector).parents('body');
@@ -42,51 +45,115 @@ FileManager = {
 		var me = this;
 		this.$button.on('click',function () {
 			me.$modelWrapper.modal('toggle');
-			me.setBody()
+			// me.setBody()
 		});
 
 		this.$modelCloseBtn.on('click',function () {
-			me.$modelWrapper.modal('hide')
+			me.$modelWrapper.modal('hide');
+			me.$filesWrapper.find('.active').removeClass('active');
+			me.selectedFilesCount();
 		});
 	},
 	setBody:function () {
-		var $content = $('<ul />');
-		$content.addClass('file-manager-body-ul');
+		this.$filesWrapper = $('<ul />');
+		this.$filesWrapper.addClass('file-manager-body-ul');
+		this.$modelBody.html(this.$filesWrapper);
+		this.$filesWrapper.append('<div class="clearfix"></div>');
+		this.$modelPaginateWrp = $('<div class="paginate col-xs-12 text-right"></div>').appendTo(this.$modelBody);
+		this.$modelBody.append('<div class="clearfix"></div>');
+		this.callAjax();
+	},
+	callAjax:function () {
 		var me = this;
 		$.ajax({
-			url:this.args.get_url,
-			data:this.args.data || {},
+			url:me.args.get_url,
+			data:me.args.ajaxData || {},
 			success:function (r) {
-				if (r.data) {
-					$.each(r.data,function (key, val) {
-						var item = $('<li />');
-						var img = $('<img />').appendTo(item);
-						img.attr({
-							'src': val.thumbnail_url,
-							'alt': val.alt
-						});
-						item.attr({
-							"data-image-id": val.id,
-							"data-url": val.url,
-							"data-thumbnail": val.thumbnail_url,
-							"data-preview": val.preview_rul
-						});
-						item.on('click',function () {
-							item.toggleClass('active');
-						});
-						$content.append(item)
-					});
-					$content.append('<div class="clearfix"></div>');
-					me.$modelBody.html($content)
-				}else {
-					me.$modelBody.html('<h2 class="text-muted">No media found</h2>')
-				}
+				me.setAjaxSuccessData(r)
 			}
 		});
 	},
+	setAjaxSuccessData:function (r) {
+		var me = this;
+		if (r.data) {
+			$.each(r.data,function (key, val) {
+				var item = $('<li />');
+				var img = $('<img />').appendTo(item);
+				img.attr({
+					'src': me.args.baseUrl + val.thumbnail_url,
+					'alt': me.args.baseUrl + val.alt
+				});
+				item.attr({
+					"data-image-id": val.id,
+					"data-url": me.args.baseUrl + val.url,
+					"data-thumbnail": me.args.baseUrl + val.thumbnail_url,
+					"data-preview": me.args.baseUrl + val.preview_rul
+				});
+				item.on('click',function () {
+					item.toggleClass('active');
+					if (!me.args.multiple) {
+						me.$filesWrapper.find('.active').not(this).removeClass('active')
+					}
+					me.selectedFilesCount()
+				});
+				me.$filesWrapper.append(item)
+			});
+		}
+
+		if (r.next_page_url) {
+			me.$nextPage = $('<button />');
+			me.$nextPage.addClass('btn btn-default');
+			me.$nextPage.html('More');
+			me.$modelPaginateWrp.html(me.$nextPage);
+			me.args.ajaxData = {
+				'page':++r.current_page
+			};
+			me.$nextPage.on('click', function () {
+				me.callAjax()
+			});
+		}else {
+			me.args.ajaxData = {};
+			me.$modelPaginateWrp.html('')
+		}
+	},
 	setFooter:function () {
 		var $content = '';
-		this.$modelFooter.html($content)
+		var me = this;
+		this.$modelFooter.html($content);
+		this.$modelFooterCloseBtn = $('<button type="button">Close</button>').appendTo(this.$modelFooter);
+		this.$modelFooterCloseBtn.addClass('btn btn-default');
+		this.$modelFooterCloseBtn.on('click',function () {
+			me.$modelCloseBtn.trigger('click')
+		});
+		this.$modelFooterInsertBtn = $('<button type="button">Insert</button>').appendTo(this.$modelFooter);
+		this.$modelFooterInsertBtn.addClass('btn btn-primary');
+		this.$modelFooterInsertBtn.on('click', function () {
+			me.insert();
+			me.$modelCloseBtn.trigger('click')
+		});
+		this.$modelFooterHelp = $('<span />');
+		this.selectedFilesCount()
+	},
+	selectedFilesCount:function () {
+		this.$modelFooter.prepend(this.$modelFooterHelp);
+		this.$modelFooterHelp.addClass('pull-left');
+		var count = this.$modelWrapper.find('.active').length;
+		this.$modelFooterHelp.html(count +' '+ (count > 1?'Files':'File')+' Selected')
+	},
+	insert:function () {
+		var me = this;
+		var target_value = null;
+		if (this.args.multiple) {
+			target_value= [];
+			this.$filesWrapper.find('.active').each(function (el, val) {
+				target_value.push($(val).attr(me.args.multiple_val_attr));
+			})
+		}else {
+			if (this.$filesWrapper.find('.active').length > 0) {
+				target_value = this.$filesWrapper.find('.active').first().data('url');
+			}
+		}
+		$(this.args.target).val(target_value)
 	}
 };
 
