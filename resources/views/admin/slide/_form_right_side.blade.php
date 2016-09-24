@@ -7,7 +7,7 @@
  */
 ?>
 <div class="form-group {!! $errors->has('feature_image')?'has-error':'' !!}">
-    <div class="col-xs-12">
+	<div class="col-xs-12">
 		{{--<button class="btn btn-sm" type="button" id="feature_image_brows">Brows</button>--}}
 		<div id="feature_thumbnail"></div>
 		<div class="input-group">
@@ -25,20 +25,11 @@
     {!! Form::label('bg_color','Background Color',['class'=>'col-xs-12 required']) !!}
     <div class="col-xs-12">
 		<div class="input-group bg_color colorpicker-element">
-			@php $bg_color = !empty($id) && $id->bg_color ? $id->bg_color: '##00627B' @endphp
+			@php $bg_color = !empty($id) && $id->bg_color ? $id->bg_color: '#00627B' @endphp
 			{!! Form::text('bg_color', $bg_color, ['class'=>'form-control col-md-7 col-xs-12', 'placeholder'=>'#1820d9']) !!}
 			<span class="input-group-addon"><i></i></span>
 		</div>
 		{!! $errors->first('bg_color','<span class="help-block">:message</span>') !!}
-    </div>
-</div>
-
-<div class="form-group {!! $errors->has('slide_id')? 'has-error':'' !!}">
-    {!! Form::label('slide_id','Slide',['class'=>'control-label col-md-3 required']) !!}
-    <div class="col-xs-12">
-		@php $slides = !empty($id) && $id->slide ? $id->slide->lists('title','id') : [] @endphp
-        {!! Form::select('slide_id',$slides, null, ['class'=>'form-control col-md-7 col-xs-12']) !!}
-        {!! $errors->first('slide_id','<span class="help-block">:message</span>') !!}
     </div>
 </div>
 
@@ -60,7 +51,6 @@
 	<script src="{!! asset('vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js') !!}"></script>
 	<script>
 		$('.bg_color').colorpicker();
-
 		var featureImage = $("#feature_image_brows").FileManager({
 			baseUrl:"{{ url('/') }}",
 			get_url:"{{ action('MediaController@index') }}",
@@ -76,6 +66,5 @@
 				});
 			}
 		});
-
 	</script>
 @endsection

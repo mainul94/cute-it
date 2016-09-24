@@ -73,7 +73,7 @@ $menus = collect([
                         ]),
                         collect([
                                 'title'=>'Slide',
-                                'icon' => 'fa fa-play-circle-o',
+                                'icon' => 'fa fa-slideshare',
                                 'children'=>collect([
                                         collect([
                                             'title' =>'Slides',
