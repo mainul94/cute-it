@@ -3,7 +3,10 @@
  */
 
 FileManager = {
-	init:function(args){
+	init:function(args, callback){
+		if (callback !== "undefiend") {
+			this.callback = callback
+		}
 		this.args = {};
 		this.args['baseUrl'] = window.location.host;
 		this.args['get_url'] = this.args.baseUrl+'/media';
@@ -153,17 +156,20 @@ FileManager = {
 				target_value = this.$filesWrapper.find('.active').first().data('url');
 			}
 		}
+		if (this.callback) {
+			this.callback($(this.args.target),target_value)
+		}
 		$(this.args.target).val(target_value)
 	}
 };
 
 (function( $ ) {
 
-	$.fn.FileManager = function(args) {
+	$.fn.FileManager = function(args, callback) {
 		this.args = args;
 		this.args.selector = this;
 		this.FileManager = FileManager;
-		this.FileManager.init(this.args);
+		this.FileManager.init(this.args, callback);
 
 		return this;
 

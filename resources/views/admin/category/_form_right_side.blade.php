@@ -9,8 +9,8 @@
 <div class="form-group {!! $errors->has('feature_image')?'has-error':'' !!}">
     <div class="col-xs-12">
 		{{--<button class="btn btn-sm" type="button" id="feature_image_brows">Brows</button>--}}
-		<div class="input-group col-xs-12
-				">
+		<div id="feature_thumbnail"></div>
+		<div class="input-group">
 			{!! Form::text('feature_image', null, ['class'=>'form-control col-md-7 col-xs-12']) !!}
 			<a href="#" class="input-group-addon" id="feature_image_brows"  data-toggle="tooltip"
 			   data-placement="bottom" title="Brows">Brows</a>
@@ -64,9 +64,19 @@
 		var featureImage = $("#feature_image_brows").FileManager({
 			baseUrl:"{{ url('/') }}",
 			get_url:"{{ action('MediaController@index') }}",
-			target: '[name=feature_image]'/*,
-			multiple:true*/
+			target: '[name=feature_image]',
+			multiple:true
+		},function (el, val) {
+			var $wrrap = $('#feature_thumbnail').html('');
+			if (typeof  val === 'string') {
+				$wrrap.append('<img class="img-responsive img-thumbnail" src="'+val+'" >');
+			}else {
+				$.each(val, function (k, v) {
+					$wrrap.append('<img class="img-responsive img-thumbnail" src="'+v+'" >');
+				});
+			}
 		});
+		featureImage.callback
 
 	</script>
 @endsection
