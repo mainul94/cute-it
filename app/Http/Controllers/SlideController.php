@@ -32,9 +32,10 @@ class SlideController extends Controller
 	 */
 	protected function validate_rules(Slide $data = null)
 	{
+		dd(request()->all());
 		return [
 			'title' => 'Required',
-			'slug' => 'Unique:roles'.($data && $data->id?',slug,'.$data->id:'')
+			'slug' => 'Unique:slides'.($data && $data->id?',slug,'.$data->id:'')
 		];
 	}
 }

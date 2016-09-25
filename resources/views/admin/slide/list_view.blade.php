@@ -7,14 +7,14 @@
  */
 ?>
 @extends('layouts.admin')
-@section('title') Article list @endsection
+@section('title') Slide list @endsection
 @section('content')
     <div class="row">
         <div class="col-md-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h3>Article list
-                        <small><a class="btn btn-primary pull-right" href="{!! action('ArticleController@create') !!}">New</a></small>
+                    <h3>Slide list
+                        <small><a class="btn btn-primary pull-right" href="{!! action('SlideController@create') !!}">New</a></small>
                     </h3>
                 </div>
                 <div class="x_content">
@@ -23,7 +23,7 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Article</th>
+                            <th>Slide</th>
                             <th>Slug</th>
                             <th>Created By</th>
                             <th>Updated By</th>
@@ -39,9 +39,9 @@
                                 <td>{!! $row->createdBy->name or "" !!}</td>
                                 <td>{!! $row->updatedBy->name or "" !!}</td>
                                 <td class="text-center action-btn-wrapper">
-                                    <a class="text-success" href="{!! action('ArticleController@show',$row->slug) !!}"><i class="fa fa-eye"></i></a>
-                                    <a class="text-warning" href="{!! action('ArticleController@edit',$row->slug) !!}"><i class="fa fa-pencil-square-o"></i></a>
-                                    {!! Html::delete('ArticleController@destroy',$row->slug) !!}
+                                    <a class="text-success" href="{!! action('SlideController@show',$row->slug) !!}"><i class="fa fa-eye"></i></a>
+                                    <a class="text-warning" href="{!! action('SlideController@edit',$row->slug) !!}"><i class="fa fa-pencil-square-o"></i></a>
+                                    {!! Html::delete('SlideController@destroy',$row->slug) !!}
                                 </td>
                             </tr>
                         @endforeach

@@ -2,8 +2,8 @@
  * Created by mainul on 9/22/16.
  */
 
-FileManager = {
-	init:function(args, callback){
+class FileManager {
+	constructor(args, callback){
 		if (callback !== "undefiend") {
 			this.callback = callback
 		}
@@ -16,8 +16,8 @@ FileManager = {
 		this.args['multiple_val_attr'] = 'data-url';
 		this.args = $.extend(this.args, args);
 		this.make()
-	},
-	make:function () {
+	}
+	make () {
 		this.$body = $(this.args.selector).parents('body');
 		this.$wrapper = $('<div class="x_content"></div>').appendTo(this.$body);
 		this.$button = $(this.args.selector);
@@ -40,11 +40,11 @@ FileManager = {
 		this.setFooter();
 		this.setup();
 
-	},
-	setTitle:function () {
+	}
+	setTitle () {
 		this.$modelTitle.html(this.args.title || "File Manager")
-	},
-	setup:function () {
+	}
+	setup () {
 		var me = this;
 		this.$button.on('click',function () {
 			me.$modelWrapper.modal('toggle');
@@ -56,8 +56,8 @@ FileManager = {
 			me.$filesWrapper.find('.active').removeClass('active');
 			me.selectedFilesCount();
 		});
-	},
-	setBody:function () {
+	}
+	setBody () {
 		this.$filesWrapper = $('<ul />');
 		this.$filesWrapper.addClass('file-manager-body-ul');
 		this.$modelBody.html(this.$filesWrapper);
@@ -65,8 +65,8 @@ FileManager = {
 		this.$modelPaginateWrp = $('<div class="paginate col-xs-12 text-right"></div>').appendTo(this.$modelBody);
 		this.$modelBody.append('<div class="clearfix"></div>');
 		this.callAjax();
-	},
-	callAjax:function () {
+	}
+	callAjax () {
 		var me = this;
 		$.ajax({
 			url:me.args.get_url,
@@ -75,8 +75,8 @@ FileManager = {
 				me.setAjaxSuccessData(r)
 			}
 		});
-	},
-	setAjaxSuccessData:function (r) {
+	}
+	setAjaxSuccessData (r) {
 		var me = this;
 		if (r.data) {
 			$.each(r.data,function (key, val) {
@@ -118,8 +118,8 @@ FileManager = {
 			me.args.ajaxData = {};
 			me.$modelPaginateWrp.html('')
 		}
-	},
-	setFooter:function () {
+	}
+	setFooter () {
 		var $content = '';
 		var me = this;
 		this.$modelFooter.html($content);
@@ -136,14 +136,14 @@ FileManager = {
 		});
 		this.$modelFooterHelp = $('<span />');
 		this.selectedFilesCount()
-	},
-	selectedFilesCount:function () {
+	}
+	selectedFilesCount () {
 		this.$modelFooter.prepend(this.$modelFooterHelp);
 		this.$modelFooterHelp.addClass('pull-left');
 		var count = this.$modelWrapper.find('.active').length;
 		this.$modelFooterHelp.html(count +' '+ (count > 1?'Files':'File')+' Selected')
-	},
-	insert:function () {
+	}
+	insert () {
 		var me = this;
 		var target_value = null;
 		if (this.args.multiple) {
@@ -161,17 +161,17 @@ FileManager = {
 		}
 		$(this.args.target).val(target_value)
 	}
-};
+}
+
+
 
 (function( $ ) {
 
 	$.fn.FileManager = function(args, callback) {
 		this.args = args;
 		this.args.selector = this;
-		this.FileManager = FileManager;
-		this.FileManager.init(this.args, callback);
-
-		return this;
+		this.FileManager = new FileManager(this.args, callback);
+		return this
 
 	};
 

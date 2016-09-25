@@ -37,3 +37,11 @@
     background-color: #2F6F9F;
   }
 }
+
+.slide_child_row {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.slide_child_row:nth-child(odd) {
+  background-color: #eef7f9;
+}

@@ -38,7 +38,9 @@
 <div class="col-xs-12">
     {!! Form::submit('Save',['class'=>'btn btn-info pull-right']) !!}
 </div>
-
+<div class="col-xs-12">
+    @include('admin.slide._child')
+</div>
 @section('footer_script')
     @parent
     <!-- include summernote css/js-->
