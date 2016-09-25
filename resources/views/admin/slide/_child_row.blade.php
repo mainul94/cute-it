@@ -7,13 +7,16 @@
  */?>
 <div class="col-xs-12 slide_child_row">
 	<div class="row">
+		@if(!empty($row))
+			{!! Form::hidden('ch_id[]',$row->id) !!}
+		@endif
 		<div class="col-sm-6 pull-right">
 			<div class="form-group {!! $errors->has('image')?'has-error':'' !!}">
 				<div class="col-xs-12">
 					{{--<button class="btn btn-sm" type="button" id="image_brows">Brows</button>--}}
-					<div class="image_thumbnail">{!! !empty($row)?'<img class="img-responsive img-thumbnail" src="'.asset($orw->url).'" >':'' !!}</div>
+					<div class="image_thumbnail">{!! !empty($row)?'<img class="img-responsive img-thumbnail" src="'.asset($row->url).'" >':'' !!}</div>
 					<div class="input-group">
-						{!! Form::text('image[]', empty($row)?null:$row->image->id, ['class'=>'form-control col-md-7 col-xs-12']) !!}
+						{!! Form::text('image[]', empty($row->imageMedia)?null:$row->imageMedia->id, ['class'=>'form-control col-md-7 col-xs-12']) !!}
 						<a href="#" class="input-group-addon image_brows" data-toggle="tooltip"
 						   data-placement="bottom" title="Brows">Brows</a>
 					</div>
@@ -55,8 +58,7 @@
 			<div class="form-group {!! $errors->has('style')? 'has-error':'' !!}">
 				{!! Form::label('style','Style',['class'=>'col-md-3 required']) !!}
 				<div class="col-xs-12">
-					{!! Form::select('style[]',['Default'=>'Default'], null, ['class'=>'form-control col-md-7 col-xs-12']) !!}
-					// ToDo empty($row)?null:$row->style after add style field ins table
+					{!! Form::select('style[]',['Default'=>'Default'], empty($row)?null:$row->style, ['class'=>'form-control col-md-7 col-xs-12']) !!}
 					{!! $errors->first('style','<span class="help-block">:message</span>') !!}
 				</div>
 			</div>
@@ -67,20 +69,6 @@
 @section('footer_script')
 	@parent
 	<script>
-		var $el = $('.slide_child_row:first');
-		var featureImage = $(".image_brows").FileManager({
-			baseUrl:"{{ url('/') }}",
-			get_url:"{{ action('MediaController@index') }}",
-			target: $el.find('[name^=image]')
-		},function (el, val) {
-			var $wrrap = $('.image_thumbnail').html('');
-			if (typeof  val === 'string') {
-				$wrrap.append('<img class="img-responsive img-thumbnail" src="'+val+'" >');
-			}else {
-				$.each(val, function (k, v) {
-					$wrrap.append('<img class="img-responsive img-thumbnail" src="'+v+'" >');
-				});
-			}
-		});
+
 	</script>
 @endsection

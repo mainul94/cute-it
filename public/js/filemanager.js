@@ -153,7 +153,7 @@ class FileManager {
 			})
 		}else {
 			if (this.$filesWrapper.find('.active').length > 0) {
-				target_value = this.$filesWrapper.find('.active').first().data('url');
+				target_value = this.$filesWrapper.find('.active').first().attr(me.args.multiple_val_attr);
 			}
 		}
 		if (this.callback) {
@@ -174,5 +174,57 @@ class FileManager {
 		return this
 
 	};
+
+	$.fn.setupThumbnail = function ($wrapper, val, from_id) {
+		if (from_id === "undefined") {
+			from_id = false
+		}
+		if ($wrapper == "undefined") {
+			$wrapper = $('.image_thumbnail');
+		}
+		$wrapper.html('');
+		if (val == "undefined") {
+			val = this.val();
+			val = val.split(",");
+			if (val.length <= 1) {
+				val = val[0]
+			}
+		}
+		if (typeof  val === 'string') {
+			if (from_id) {
+				filters = [['id','=', val]]
+			}else {
+				$wrapper.append('<img class="img-responsive img-thumbnail" src="'+val+'" >');
+			}
+		}else {
+			if (from_id) {
+				filters = [['id', 'in', val]]
+			}else {
+				$.each(val, function (k, v) {
+					$wrapper.append('<img class="img-responsive img-thumbnail" src="'+v+'" >');
+				});
+			}
+
+		}
+		if (from_id) {
+			$.ajax({
+				url: 'http://'+window.location.host +'/api/get-values',
+				data:{
+					table:"media",
+					field:"*",
+					filters:filters
+				},
+				success:function (r) {
+					console.log(r);
+					$.each(r, function (k, v) {
+						$wrapper.append('<img class="img-responsive img-thumbnail" src="'+v.url+'" >');
+					});
+				}
+			});
+		}
+
+		return this
+
+	}
 
 }( jQuery ));
