@@ -37,6 +37,8 @@ Route::group(['middleware'=>['auth','api']], function () {
     Route::delete('/api/delete/','APIController@deleteRecord');
 });
 
+Route::auth();
+
 Route::group(['middleware'=>'web'], function () {
     Route::get('map/{region?}','WebController@map');
     Route::get('country/{country}','WebController@country');
@@ -44,6 +46,5 @@ Route::group(['middleware'=>'web'], function () {
     Route::get('{category}/{article?}','WebController@category');
 });
 
-Route::auth();
 
 Route::get('/home', 'HomeController@index');

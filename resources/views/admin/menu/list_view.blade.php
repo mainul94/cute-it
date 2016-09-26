@@ -10,7 +10,7 @@
 @section('title') Menu list @endsection
 @section('content')
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="x_panel">
                 <div class="x_title">
                     <h3>Menu list
@@ -23,7 +23,7 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Name</th>
+                            <th>Title</th>
                             <th>Slug</th>
                             <th>Action</th>
                         </tr>
@@ -32,12 +32,12 @@
                         @foreach($rows as $sl=>$row)
                             <tr>
                                 <td>{!! $start + ++$sl !!}</td>
-                                <td>{!! $row->name !!}</td>
+                                <td>{!! $row->title !!}</td>
                                 <td>{!! $row->slug !!}</td>
                                 <td class="text-center action-btn-wrapper">
-                                    <a class="text-success" href="{!! action('MenuController@show',$row->id) !!}"><i class="fa fa-eye"></i></a>
-                                    <a class="text-warning" href="{!! action('MenuController@edit',$row->id) !!}"><i class="fa fa-pencil-square-o"></i></a>
-                                    {!! Html::delete('MenuController@destroy',$row->id) !!}
+                                    <a class="text-success" href="{!! action('MenuController@show',$row->slug) !!}"><i class="fa fa-eye"></i></a>
+                                    <a class="text-warning" href="{!! action('MenuController@edit',$row->slug) !!}"><i class="fa fa-pencil-square-o"></i></a>
+                                    {!! Html::delete('MenuController@destroy',$row->slug) !!}
                                 </td>
                             </tr>
                         @endforeach

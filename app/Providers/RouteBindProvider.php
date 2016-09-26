@@ -7,6 +7,7 @@ use App\Category;
 use App\Country;
 use App\Division;
 use App\Media;
+use App\Menu;
 use App\Page;
 use App\Region;
 use App\Setting;
@@ -38,6 +39,7 @@ class RouteBindProvider extends ServiceProvider
         $router->model('slide', Slide::class);
         $router->model('setting', Setting::class);
         $router->model('media', Media::class);
+        $router->model('menu', Menu::class);
     }
 
     /**
