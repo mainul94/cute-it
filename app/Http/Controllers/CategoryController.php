@@ -34,7 +34,7 @@ class CategoryController extends Controller
 	{
 		return [
 			'title' => 'Required',
-			'slug' => 'Unique:roles'.($data && $data->id?',slug,'.$data->id:'')
+			'slug' => 'Unique:categories'.($data && $data->id?',slug,'.$data->id:'')
 		];
 	}
 }

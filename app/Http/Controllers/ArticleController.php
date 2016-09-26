@@ -35,7 +35,7 @@ class ArticleController extends Controller
 	{
 		return [
 			'title' => 'Required',
-			'slug' => 'Unique:roles'.($data && $data->id?',slug,'.$data->id:'')
+			'slug' => 'Unique:articles'.($data && $data->id?',slug,'.$data->id:'')
 		];
 	}
 

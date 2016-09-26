@@ -28,12 +28,20 @@ Route::group(['prefix'=>'admin'], function () {
     Route::resource('media','MediaController');
     Route::resource('category','CategoryController');
     Route::resource('article','ArticleController');
+    Route::resource('menu','MenuController');
 });
 
-Route::group(['middleware'=>'auth'], function () {
+Route::group(['middleware'=>['auth','api']], function () {
     Route::get('/api/getvalue/','APIController@getValue');
     Route::get('/api/get-values/','APIController@getValues');
     Route::delete('/api/delete/','APIController@deleteRecord');
+});
+
+Route::group(['middleware'=>'web'], function () {
+    Route::get('map/{region?}','WebController@map');
+    Route::get('country/{country}','WebController@country');
+    Route::get('page/{page}','WebController@page');
+    Route::get('{category}/{article?}','WebController@category');
 });
 
 Route::auth();
