@@ -159,7 +159,11 @@ class FileManager {
 		if (this.callback) {
 			this.callback($(this.args.target),target_value)
 		}
-		$(this.args.target).val(target_value)
+		$(this.args.target).val(target_value);
+		var ofset = $(this.args.target).offset();
+		var plusHeight = $(this.args.target).height();
+		console.log(plusHeight);
+		window.scrollTo(parseInt(ofset.top+plusHeight), parseInt(ofset.left));
 	}
 }
 
@@ -215,9 +219,8 @@ class FileManager {
 					filters:filters
 				},
 				success:function (r) {
-					console.log(r);
 					$.each(r, function (k, v) {
-						$wrapper.append('<img class="img-responsive img-thumbnail" src="'+v.url+'" >');
+						$wrapper.append('<img class="img-responsive img-thumbnail" src="'+v.thumbnail_url+'" >');
 					});
 				}
 			});

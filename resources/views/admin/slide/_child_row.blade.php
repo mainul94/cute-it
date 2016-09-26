@@ -14,7 +14,7 @@
 			<div class="form-group {!! $errors->has('image')?'has-error':'' !!}">
 				<div class="col-xs-12">
 					{{--<button class="btn btn-sm" type="button" id="image_brows">Brows</button>--}}
-					<div class="image_thumbnail">{!! !empty($row)?'<img class="img-responsive img-thumbnail" src="'.asset($row->url).'" >':'' !!}</div>
+					<div class="image_thumbnail">{!! !empty($row)?'<img class="img-responsive img-thumbnail" src="'.asset($row->imageMedia->thumbnail_url).'" >':'' !!}</div>
 					<div class="input-group">
 						{!! Form::text('image[]', empty($row->imageMedia)?null:$row->imageMedia->id, ['class'=>'form-control col-md-7 col-xs-12']) !!}
 						<a href="#" class="input-group-addon image_brows" data-toggle="tooltip"
