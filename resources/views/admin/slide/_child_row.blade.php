@@ -24,6 +24,12 @@
 					{!! $errors->first('image','<span class="help-block">:message</span>') !!}
 				</div>
 				{!! Form::label('image','Image',['class'=>'col-xs-12 required']) !!}
+				@if(empty($row))
+					<button class="btn btn-danger" type="button" onclick="javascript:$(this).parents('.slide_child_row').remove()">Remove Slide</button>
+				@else
+					<button class="btn btn-danger" type="button" onclick="javascript:deleteDataByAPI(this, '/api/delete', 'slide_children',
+						'{{ $row->id }}', $(this).parents('.slide_child_row'))">Remove Slide</button>
+				@endif
 			</div>
 		</div>
 		<div class="col-sm-6">

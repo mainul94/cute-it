@@ -31,18 +31,13 @@
 					multiple_val_attr:'data-image-id'
 				},function (el, val) {
 					$el.find('[name^=image]').setupThumbnail($el.find('.image_thumbnail'),val,true);
-					/*var $wrrap = $('.').html('');
-					if (typeof  val === 'string') {
-						$wrrap.append('<img class="img-responsive img-thumbnail" src="'+val+'" >');
-					}else {
-						$.each(val, function (k, v) {
-							$wrrap.append('<img class="img-responsive img-thumbnail" src="'+v+'" >');
-						});
-					}*/
 				});
 		});
-		//////////////////////////////////////
+		//////////////////////////////////////COPy/////////////
 		$('#slide_child_add').on('click', function () {
+			if ($('.slide_child_row:last').length <1) {
+				window.location.reload()
+			}
 			var $eliment = $('.slide_child_row:last').clone();
 			$eliment.appendTo('.slide_child_row_wrapper');
 			$eliment.find('[name^=ch_title]').val(null);
@@ -59,14 +54,6 @@
 				multiple_val_attr:'data-image-id'
 			},function (el, val) {
 				$eliment.find('[name^=image]').setupThumbnail($eliment.find('.image_thumbnail'),val,true);
-				/*var $wrrap = $eliment.find('.image_thumbnail').html('');
-				if (typeof  val === 'string') {
-					$wrrap.append('<img class="img-responsive img-thumbnail" src="'+val+'" >');
-				}else {
-					$.each(val, function (k, v) {
-						$wrrap.append('<img class="img-responsive img-thumbnail" src="'+v+'" >');
-					});
-				}*/
 			});
 		});
 	</script>

@@ -9,7 +9,7 @@
 <div class="form-group {!! $errors->has('feature_image')?'has-error':'' !!}">
     <div class="col-xs-12">
 		{{--<button class="btn btn-sm" type="button" id="feature_image_brows">Brows</button>--}}
-		<div id="feature_thumbnail"></div>
+		<div id="feature_thumbnail">{!! !empty($id)?'<img class="img-responsive img-thumbnail" src="'.asset($id->feature_image).'" >':'' !!}</div>
 		<div class="input-group">
 			{!! Form::text('feature_image', null, ['class'=>'form-control col-md-7 col-xs-12']) !!}
 			<a href="#" class="input-group-addon" id="feature_image_brows"  data-toggle="tooltip"

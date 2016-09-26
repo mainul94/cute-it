@@ -63,4 +63,35 @@ class APIController extends Controller
         }
         return response()->json($data->get());
     }
+
+
+    public function deleteRecord(Request $request)
+    {
+        if (!$request->ajax()) {
+            return true;
+        }
+        if (empty($request->get('id'))) {
+            return response()->json([
+                "data" => [
+                    "error" => "ID Mandatory"
+                ]
+            ]);
+        }
+        if (empty($request->get('table'))) {
+            return response()->json([
+                "data" => [
+                    "error" => "Table Mandatory"
+                ]
+            ]);
+        }
+
+        $data = DB::table($request->get('table'))->where('id',$request->get('id'))->delete();
+        if ($data) {
+            return response()->json([
+                "data" => [
+                    "success" => "Record Deleted"
+                ]
+            ]);
+        }
+    }
 }

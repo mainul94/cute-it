@@ -33,6 +33,7 @@ Route::group(['prefix'=>'admin'], function () {
 Route::group(['middleware'=>'auth'], function () {
     Route::get('/api/getvalue/','APIController@getValue');
     Route::get('/api/get-values/','APIController@getValues');
+    Route::delete('/api/delete/','APIController@deleteRecord');
 });
 
 Route::auth();

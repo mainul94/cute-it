@@ -147,6 +147,9 @@
     <link rel="stylesheet" href="{!! asset('css/admin_customize.css') !!}">
 @endsection
 @section('footer_script')
+    <script>
+        $.ajaxSetup({ headers: { 'X-CSRF-TOKEN' : '{{ csrf_token() }}' } });
+    </script>
     <script src="{!! asset('vendors/sweetalert2/dist/sweetalert2.min.js') !!}"></script>
     <script src="{!! asset('vendors/select2/dist/js/select2.full.min.js') !!}"></script>
     <script src="{!! asset('js/clipboard.js') !!}"></script>
@@ -180,5 +183,70 @@
                 });
             });
         });
+
+//        Delete Function
+        deleteDataByAPI = function (event, url, table, id, removeElement) {
+            if (url === "undefined") {
+                swal({
+                    title: 'Url Mandatory',
+                    type: 'error'
+                });
+                return
+            }
+            if (table === "undefined") {
+                swal({
+                    title: 'Table Mandatory',
+                    type: 'error'
+                });
+                return
+            }
+            if (id === "undefined") {
+                swal({
+                    title: 'ID Mandatory',
+                    type: 'error'
+                });
+                return
+            }
+            if (url.indexOf('http://') == -1) {
+                url = 'http://'+window.location.host+url
+            }
+            swal({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then(function() {
+                $.ajax({
+                    url:url,
+                    method:'POST',
+                    data:{
+                        _method:'delete',
+                        table:table,
+                        id:id
+                    },
+                    success:function (r) {
+                        if (r.data) {
+                            if (r.data && r.data.success) {
+                                swal({
+                                    title: r.data && r.data.success,
+                                    type: 'success'
+                                });
+                                if (removeElement != "undefined") {
+                                    removeElement.remove();
+                                }
+                            }else {
+                                swal({
+                                    title: r.data && r.data.error,
+                                    type: 'error'
+                                });
+                            }
+                        }
+                    }
+                })
+            });
+        }
     </script>
 @endsection
