@@ -227,6 +227,26 @@ $menus = collect([
                                 ])
                         ]),
                         collect([
+                                'title'=>'Menu',
+                                'icon' => 'fa fa-user-secret',
+                                'label_class' => 'fa fa-bars',
+                                'label' => '',
+                                'children' => collect([
+                                        collect([
+                                                'title'=>'Menus',
+                                                'link'=> action('MenuController@index'),
+                                                'label_class' => 'label label-success pull-right',
+                                                'label' => 'All'
+                                        ]),
+                                        collect([
+                                                'title'=>'Create Menu',
+                                                'link'=>action('MenuController@create'),
+                                                'label_class' => 'label label-info pull-right',
+                                                'label' => 'New'
+                                        ])
+                                ])
+                        ]),
+                        collect([
                                 'title'=>'Settings',
                                 'icon' => 'fa fa-cogs',
                                 'link' => action('SettingController@index'),

@@ -45,3 +45,48 @@
 .slide_child_row:nth-child(odd) {
   background-color: #eef7f9;
 }
+// DD
+.dd {
+  display: block;
+  .dd-list{
+    display: inherit;
+    .dd-item {
+      display: inherit;
+      .dd-handle{
+        display: inherit;
+        background-color: lightblue;
+        padding:3px;
+        margin-bottom: 5px;
+      }
+      > button { display: block;
+        position: relative;
+        cursor: pointer;
+        float: left;
+        width: 25px;
+        height: 20px;
+        margin: 5px 0;
+        padding: 0;
+        text-indent: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        border: 0;
+        background: transparent;
+        font-size: 12px;
+        line-height: 1;
+        text-align: center;
+        font-weight: bold;
+      }
+      > button:before {
+        content: '+';
+        display: block;
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        text-indent: 0;
+      }
+      > button[data-action="collapse"]:before {
+        content: '-';
+      }
+    }
+  }
+}
