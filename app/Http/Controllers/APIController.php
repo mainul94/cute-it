@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\MenuChild;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -101,6 +102,15 @@ class APIController extends Controller
         if (!$request->ajax()) {
             return true;
         }
+        $slide = new MenuChild();
+        $slide->fill($request->all());
+        $slide->save();
+        return response()->json([
+            "message" => [
+                $slide->toArray()
+            ],
+            "success" => true
+        ]);
     }
 
 
@@ -109,6 +119,7 @@ class APIController extends Controller
         if (!$request->ajax()) {
             return true;
         }
+
         if (empty($request->get('id'))) {
             return response()->json([
                 "message" => [
@@ -116,6 +127,15 @@ class APIController extends Controller
                 "error" => "ID Mandatory"
             ]);
         }
+        $slide = MenuChild::find($request->get('id'));
+        $slide->fill($request->all());
+        $slide->save();
+        return response()->json([
+            "message" => [
+                $slide->toArray()
+            ],
+            "success" => true
+        ]);
     }
 
 
@@ -124,11 +144,11 @@ class APIController extends Controller
         if (!$request->ajax()) {
             return true;
         }
+        $slide = MenuChild::where('id',$request->get('id'))->delete();
         if (empty($request->get('id'))) {
             return response()->json([
-                "message" => [
-                ],
-                "error" => "ID Mandatory"
+                "message" => "Record Deleted",
+                "success" => true
             ]);
         }
     }

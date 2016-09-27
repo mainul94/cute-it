@@ -17,7 +17,7 @@
 			<div class="dd-handle">Item 3</div>
 			<ol class="dd-list">
 				<li class="dd-item" data-custom="true" data-class="test" data-url="https://google.com" data-id="4">
-					<span class="edit_child"><i class="fa fa-chevron-circle-down"></i></span>
+					<span class="edit_child" onclick="javascript:editChild(this)"><i class="fa fa-chevron-circle-down"></i></span>
 					<div class="dd-handle">Item 4</div>
 				</li>
 				<li class="dd-item" data-id="5">

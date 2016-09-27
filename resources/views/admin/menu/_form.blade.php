@@ -32,7 +32,6 @@
 <div class="col-sm-6">
     @include('admin.menu._new_child')
 </div>
-
 @section('footer_script')
     @parent
     <script src="{{ asset('js/jquery.nestable.js') }}"></script>
@@ -59,34 +58,37 @@
                 url = "{{  url('') }}" +'/' + $('select[name=page]').val();
             }
 
-            var $dd_list = $('.dd-list');
+            var $dd_list = $('.dd-list:first');
             console.log()
             insertOrUpdateMenuChild('http://'+window.location.host+'/api/child-menu','POST',{
                 'url':url,
                 'title':label,
                 'link_type':data,
-                'menu_id': "{{ request()->route()->getParameter('menu') }}"
+                'menu_id': "{{ request()->route()->getParameter('menu')->id }}"
             },null,function (status, data) {
-                console.log(data)
+                if (status && data) {
+                    $item = $('<li />').appendTo($dd_list);
+                    $item.addClass('dd-item');
+                    $item.attr('data-id',data.id);
+                    $editButton = $('<span class="edit_child" onclick="javascript:editChild(this)">' +
+                            '<i class="fa fa-chevron-circle-down"></i></span>').appendTo($item);
+                    $itemHandeller = $('<div class="dd-handle"></div>').appendTo($item);
+                    $itemHandeller.html(data.title);
+                }
             })
         });
         //////////////// Edit Child ////////////////
-        $('.edit_child').on('click', function () {
-            if ($(this).hasClass('active')) {
-                $(this).removeClass('active');
-                $(this).children('i.fa').removeClass('fa-chevron-circle-up').addClass('fa-chevron-circle-down');
-                $(this).next('.edit-wrapper').remove();
+        function editChild(e) {
+            if ($(e).hasClass('active')) {
+                $(e).removeClass('active');
+                $(e).children('i.fa').removeClass('fa-chevron-circle-up').addClass('fa-chevron-circle-down');
+                $(e).next('.edit-wrapper').remove();
             }else {
-                $(this).addClass('active');
-                $(this).children('i.fa').addClass('fa-chevron-circle-up').removeClass('fa-chevron-circle-down');
-                $(this).editFormGenerate();
+                $(e).addClass('active');
+                $(e).children('i.fa').addClass('fa-chevron-circle-up').removeClass('fa-chevron-circle-down');
+                $(e).editFormGenerate();
             }
-            
-
-
-
-
-        });
+        }
         (function ( $ ) {
 
             $.fn.editFormGenerate = function () {
@@ -118,10 +120,15 @@
                 });
 
                 $saveButton.on('click',function () {
+                    if (typeof $urlInput === "undefined") {
+                        $urlInputVal = null
+                    }else {
+                        $urlInputVal = $urlInput.val()
+                    }
                     insertOrUpdateMenuChild('http://'+window.location.host+'/api/child-menu','PATCH',{
                         'css_class':$classInput.val(),
                         'title':$labelInput.val(),
-                        'url':$urlInput || null
+                        'url':$urlInputVal
                     },$list_Wrapper.attr('data-id'),function (status, data) {
                         console.log([status,data])
                     })
@@ -140,7 +147,7 @@
                     id:id},data),
                 success:function (r) {
                     if (r.success) {
-                        callback('success',r)
+                        callback('success',r.message[0])
                     }else {
                         callback('error',r)
                     }
