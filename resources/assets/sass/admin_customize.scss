@@ -47,16 +47,26 @@
 }
 // DD
 .dd {
-  display: block;
+  position: relative; display: block; margin: 0; padding: 0; max-width: 600px; list-style: none; font-size: 13px; line-height: 20px;
   .dd-list{
     display: inherit;
     .dd-item {
       display: inherit;
       .dd-handle{
         display: inherit;
-        background-color: lightblue;
-        padding:3px;
+        background-color: lightgray;
+        padding:5px;
         margin-bottom: 5px;
+        color: #333;
+        text-decoration: none;
+        font-weight: bold;
+        border: 1px solid #ccc;
+        border-radius:5px;
+      }
+      :hover {
+        color: #7f7f7f;
+        background-color: #ffffff;
+        cursor: pointer;
       }
       > button { display: block;
         position: relative;
@@ -89,4 +99,29 @@
       }
     }
   }
+}
+.dd-item,
+.dd-empty,
+.dd-placeholder {
+  display: block; position: relative; margin: 0; padding: 0; min-height: 20px; font-size: 13px; line-height: 20px;
+}
+.dd-collapsed .dd-list { display: none; }
+.dd-placeholder,
+.dd-empty { margin: 5px 0; padding: 0; min-height: 30px; background: #f2fbff; border: 1px dashed #b6bcbf; box-sizing: border-box; -moz-box-sizing: border-box; }
+.dd-empty { border: 1px dashed #bbb; min-height: 100px; background-color: #e5e5e5;
+  background-image: -webkit-linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff),
+  -webkit-linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff);
+  background-image:    -moz-linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff),
+  -moz-linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff);
+  background-image:         linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff),
+  linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff);
+  background-size: 60px 60px;
+  background-position: 0 0, 30px 30px;
+}
+
+.edit_child {
+  padding: 6px;
+  display: inline-block;
+  float: right;
+  overflow: hidden;
 }

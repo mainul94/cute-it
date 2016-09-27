@@ -41,6 +41,7 @@
         $children = $('.dd').nestable({
 
         });
+        ///////////////////Add Child //////////
         $('button.add_child').on('click',function () {
             var data = $(this).data('from');
             var url, label;
@@ -59,6 +60,96 @@
             }
 
             var $dd_list = $('.dd-list');
+            console.log()
+            insertOrUpdateMenuChild('http://'+window.location.host+'/api/child-menu','POST',{
+                'url':url,
+                'title':label,
+                'link_type':data,
+                'menu_id': "{{ request()->route()->getParameter('menu') }}"
+            },null,function (status, data) {
+                console.log(data)
+            })
         });
+        //////////////// Edit Child ////////////////
+        $('.edit_child').on('click', function () {
+            if ($(this).hasClass('active')) {
+                $(this).removeClass('active');
+                $(this).children('i.fa').removeClass('fa-chevron-circle-up').addClass('fa-chevron-circle-down');
+                $(this).next('.edit-wrapper').remove();
+            }else {
+                $(this).addClass('active');
+                $(this).children('i.fa').addClass('fa-chevron-circle-up').removeClass('fa-chevron-circle-down');
+                $(this).editFormGenerate();
+            }
+            
+
+
+
+
+        });
+        (function ( $ ) {
+
+            $.fn.editFormGenerate = function () {
+                $list_Wrapper = this.closest('.dd-item');
+                $editWrapper = $('<div />');
+                $editWrapper.addClass('edit-wrapper');
+                $editWrapper.append('<label> Label</label>');
+                $labelInput = $('<input class="form-control" type="text" />').appendTo($editWrapper);
+                $labelInput.val($list_Wrapper.children('.dd-handle:first').html());
+                $editWrapper.append('<label>Class</label>');
+                $classInput = $('<input class="form-control" type="text" />').appendTo($editWrapper);
+                if ($list_Wrapper.attr('data-class')) {
+                    $classInput.val($list_Wrapper.attr('data-class'))
+                }
+                if ($list_Wrapper.attr('data-custom') == "true") {
+                    $editWrapper.append('<label>Url</label>');
+                    $urlInput = $('<input class="form-control" type="text" />').appendTo($editWrapper);
+                    if ($list_Wrapper.attr('data-url')) {
+                        $urlInput.val($list_Wrapper.attr('data-url'))
+                    }
+                }
+                $editWrapper.append('<br>');
+                $saveButton = $('<button type="button" class="btn btn-primary">Save</button>').appendTo($editWrapper);
+                $cancelButton = $('<button type="button" class="btn btn-warning">Cancel</button>').appendTo($editWrapper);
+                $editWrapper.insertAfter(this);
+                var me = this;
+                $cancelButton.on('click', function () {
+                    me.trigger('click');
+                });
+
+                $saveButton.on('click',function () {
+                    insertOrUpdateMenuChild('http://'+window.location.host+'/api/child-menu','PATCH',{
+                        'css_class':$classInput.val(),
+                        'title':$labelInput.val(),
+                        'url':$urlInput || null
+                    },$list_Wrapper.attr('data-id'),function (status, data) {
+                        console.log([status,data])
+                    })
+                });
+                return this;
+            };
+
+        }( jQuery ));
+        
+        function insertOrUpdateMenuChild(url, method, data, id, callback) {
+            $.ajax({
+                url:url,
+                method:"post",
+                data:$.extend({
+                    _method:method,
+                    id:id},data),
+                success:function (r) {
+                    if (r.success) {
+                        callback('success',r)
+                    }else {
+                        callback('error',r)
+                    }
+                },
+                error:function (status) {
+                    callback('error',status);
+                }
+            })
+        }
+
     </script>
 @endsection

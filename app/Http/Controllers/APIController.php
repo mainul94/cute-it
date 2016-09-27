@@ -94,4 +94,42 @@ class APIController extends Controller
             ]);
         }
     }
+
+
+    public function storeChildMenu(Request $request)
+    {
+        if (!$request->ajax()) {
+            return true;
+        }
+    }
+
+
+    public function updateChildMenu(Request $request)
+    {
+        if (!$request->ajax()) {
+            return true;
+        }
+        if (empty($request->get('id'))) {
+            return response()->json([
+                "message" => [
+                ],
+                "error" => "ID Mandatory"
+            ]);
+        }
+    }
+
+
+    public function deleteChildMenu(Request $request)
+    {
+        if (!$request->ajax()) {
+            return true;
+        }
+        if (empty($request->get('id'))) {
+            return response()->json([
+                "message" => [
+                ],
+                "error" => "ID Mandatory"
+            ]);
+        }
+    }
 }
