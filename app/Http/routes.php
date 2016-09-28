@@ -41,6 +41,7 @@ Route::group(['middleware'=>['auth','api']], function () {
 });
 
 Route::auth();
+Route::get('/home', 'HomeController@index');
 
 Route::group(['middleware'=>'web'], function () {
     Route::get('map/{region?}','WebController@map');
@@ -48,6 +49,3 @@ Route::group(['middleware'=>'web'], function () {
     Route::get('page/{page}','WebController@page');
     Route::get('{category}/{article?}','WebController@category');
 });
-
-
-Route::get('/home', 'HomeController@index');

@@ -19,4 +19,13 @@ class Menu extends Model
 	{
 		return $this->hasMany(MenuChild::class);
 	}
+
+	/**
+	 * get Child Menu
+	 * @return mixed
+	 */
+	public function childrenFirstDepth()
+	{
+		return $this->hasMany(MenuChild::class)->where('menu_children_id',null);
+	}
 }

@@ -10,6 +10,7 @@
     {!! Form::label('title','Title *',['class'=>'control-label col-md-3 required']) !!}
     <div class="col-md-7">
         {!! Form::text('title', null, ['class'=>'form-control col-md-7 col-xs-12']) !!}
+        {!! Form::hidden('children', null, ['class'=>'form-control col-md-7 col-xs-12']) !!}
         {!! $errors->first('title','<span class="help-block">:message</span>') !!}
     </div>
 </div>
@@ -25,9 +26,11 @@
 <div class="col-xs-12">
     {!! Form::submit('Save',['class'=>'btn btn-info pull-right']) !!}
 </div>
-
+@if(!empty($id))
 <div class="col-sm-6">
-    @include('admin.menu._child_arrange')
+    <div class="dd">
+        @include('admin.menu._child_arrange',['children'=>$id->childrenFirstDepth])
+    </div>
 </div>
 <div class="col-sm-6">
     @include('admin.menu._new_child')
@@ -39,6 +42,14 @@
     <script>
         $children = $('.dd').nestable({
 
+        }).on('change', function (e) {
+            var list   = e.length ? e : $(e.target),
+                    output  = $('input[name^=children]');
+            if (window.JSON) {
+                output.val(window.JSON.stringify(list.nestable('serialize')));//, null, 2));
+            } else {
+                swal('JSON browser support required for this demo.');
+            }
         });
         ///////////////////Add Child //////////
         $('button.add_child').on('click',function () {
@@ -59,7 +70,6 @@
             }
 
             var $dd_list = $('.dd-list:first');
-            console.log()
             insertOrUpdateMenuChild('http://'+window.location.host+'/api/child-menu','POST',{
                 'url':url,
                 'title':label,
@@ -70,6 +80,7 @@
                     $item = $('<li />').appendTo($dd_list);
                     $item.addClass('dd-item');
                     $item.attr('data-id',data.id);
+                    $item.attr('data-link-type',data.link_type);
                     $editButton = $('<span class="edit_child" onclick="javascript:editChild(this)">' +
                             '<i class="fa fa-chevron-circle-down"></i></span>').appendTo($item);
                     $itemHandeller = $('<div class="dd-handle"></div>').appendTo($item);
@@ -95,7 +106,7 @@
                 $list_Wrapper = this.closest('.dd-item');
                 $editWrapper = $('<div />');
                 $editWrapper.addClass('edit-wrapper');
-                $editWrapper.append('<label> Label</label>');
+                $editWrapper.append('<label>Label</label>');
                 $labelInput = $('<input class="form-control" type="text" />').appendTo($editWrapper);
                 $labelInput.val($list_Wrapper.children('.dd-handle:first').html());
                 $editWrapper.append('<label>Class</label>');
@@ -113,6 +124,7 @@
                 $editWrapper.append('<br>');
                 $saveButton = $('<button type="button" class="btn btn-primary">Save</button>').appendTo($editWrapper);
                 $cancelButton = $('<button type="button" class="btn btn-warning">Cancel</button>').appendTo($editWrapper);
+                $deleteButton = $('<button type="button" class="btn btn-danger">Delete</button>').appendTo($editWrapper);
                 $editWrapper.insertAfter(this);
                 var me = this;
                 $cancelButton.on('click', function () {
@@ -130,14 +142,51 @@
                         'title':$labelInput.val(),
                         'url':$urlInputVal
                     },$list_Wrapper.attr('data-id'),function (status, data) {
-                        console.log([status,data])
-                    })
+                        if (status == "success") {
+                            console.log('sd');
+                            $list_Wrapper.attr({
+                                'data-link-type':data.link_type,
+                                'data-url':data.url,
+                                'data-class':data.css_class
+                            });
+                            $list_Wrapper.children('.dd-handle').html(data.title)
+                        }
+                    });
+                    me.trigger('click');
+                });
+                $deleteButton.on('click', function () {
+                    swal({
+                        title: 'Are you sure?',
+                        text: "You won't be able to revert this!",
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, delete it!'
+                    }).then(function() {
+                        insertOrUpdateMenuChild('http://'+window.location.host+'/api/child-menu','DELETE',{},$list_Wrapper.attr('data-id'),function (status,data) {
+                            if (status == "success") {
+                                swal({
+                                    title: data,
+                                    type: 'success'
+                                });
+                                if ($list_Wrapper.find('.dd-list').length) {
+                                    $parent = $list_Wrapper.parent();
+                                    $list_Wrapper.find('.dd-list').each(function () {
+                                        $parent.append($(this).html())
+                                    });
+                                }
+                                $list_Wrapper.remove();
+                                me.trigger('click');
+                            }
+                        })
+                    });
                 });
                 return this;
             };
 
         }( jQuery ));
-        
+
         function insertOrUpdateMenuChild(url, method, data, id, callback) {
             $.ajax({
                 url:url,
@@ -157,6 +206,6 @@
                 }
             })
         }
-
     </script>
 @endsection
+@endif

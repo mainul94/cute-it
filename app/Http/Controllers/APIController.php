@@ -144,12 +144,10 @@ class APIController extends Controller
         if (!$request->ajax()) {
             return true;
         }
-        $slide = MenuChild::where('id',$request->get('id'))->delete();
-        if (empty($request->get('id'))) {
-            return response()->json([
-                "message" => "Record Deleted",
-                "success" => true
-            ]);
-        }
+        MenuChild::where('id',$request->get('id'))->delete();
+        return response()->json([
+            "message" => ["Record Deleted"],
+            "success" => true
+        ]);
     }
 }

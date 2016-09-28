@@ -15,7 +15,7 @@
                     Edit Menu
                 </div>
                 <div class="x_content">
-                    {!! Form::model($id,['action'=>['MenuController@update',$id->id], 'method'=>'PATCH', 'class'=>'form-horizontal']) !!}
+                    {!! Form::model($id,['action'=>['MenuController@update',$id->slug], 'method'=>'PATCH', 'class'=>'form-horizontal']) !!}
                     @include('admin.menu._form')
                     {!! Form::close() !!}
                 </div>
