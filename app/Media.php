@@ -33,15 +33,15 @@ class Media extends Model
 			$path = str_replace(storage_path(), '', $dir);
 			if (in_array($data->getMimeType(), $this->mimType)) {
 				$image = Image::make($data->getRealPath());
-				$thumbnail = $image->resize(300,300, function ($constraint) {
-					$constraint->aspectRatio();
-				});
+				$image->save($dir.$data->getClientOriginalName());
 				$preview =  $image->resize(700,700, function ($constraint) {
 					$constraint->aspectRatio();
 				});
-				$image->save($dir.$data->getClientOriginalName());
-				$thumbnail->save($dir.'300x300_'.$data->getClientOriginalName());
 				$preview->save($dir.'700x700_'.$data->getClientOriginalName());
+				$thumbnail = $image->resize(300,300, function ($constraint) {
+					$constraint->aspectRatio();
+				});
+				$thumbnail->save($dir.'300x300_'.$data->getClientOriginalName());
 				list($width, $height) = getimagesize($data);
 				$this->attributes['file_dimension'] = $width . 'x' . $height;
 			}else {

@@ -1,3 +1,4 @@
+
 <?php
 /**
  * Created by PhpStorm.
@@ -42,6 +43,8 @@
 					</div>
 				</div>
 			@endforeach
+			<div class="clearfix"></div>
+			{!! $files->render() !!}
 		</div>
 	</div>
 @endsection
