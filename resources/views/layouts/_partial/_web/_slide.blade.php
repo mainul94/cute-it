@@ -5,80 +5,81 @@
  * Date: 9/28/16
  * Time: 5:47 PM
  */?>
-
-
 <div class="site-slider">
 	<ul class="bxslider">
-		<li>
-			<img src="{{ asset('vendors/web_template/images/slider/slide1.jpg') }}" alt="slider image 1">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12 text-right">
-						<div class="slider-caption">
-							<h2>Your HTML5 Website</h2>
-						</div>
+		@if(isset($slide->slideChildren))
+			@foreach($slide->slideChildren as $key=>$child)
+			<li data-thumbnail-url="{{ $child->imageMedia->thumbnail_url }}" data-thumbnail-alt="{!! $child->title !!}">
+				<img src="{{ asset($child->imageMedia->url) }}" alt="{!! $child->title !!}">
+				<div class="container caption-wrapper">
+					<div class="slider-caption">
+						<h2>{!! $child->title !!}</h2>
+						<p>{!! $child->caption !!}</p>
 					</div>
 				</div>
-			</div>
-		</li>
-		<li>
-			<img src="{{ asset('vendors/web_template/images/slider/slide2.jpg') }}" alt="slider image 2">
-			<div class="container caption-wrapper">
-				<div class="slider-caption">
-					<h2>Free Bootstrap Template</h2>
-				</div>
-			</div>
-		</li>
-		<li>
-			<img src="{{ asset('vendors/web_template/images/slider/slide3.jpg') }}" alt="slider image 3">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12 text-right">
-						<div class="slider-caption">
-							<h2>Mobile Ready Design</h2>
-						</div>
-					</div>
-				</div>
-			</div>
-		</li>
-		<li>
-			<img src="{{ asset('vendors/web_template/images/slider/slide4.jpg') }}" alt="slider image 4">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12 text-right">
-						<div class="slider-caption">
-							<h2>Responsive Bootstrap</h2>
-						</div>
-					</div>
-				</div>
-			</div>
-		</li>
-		<li>
-			<img src="{{ asset('vendors/web_template/images/slider/slide5.jpg') }}" alt="slider image 5">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12 text-right">
-						<div class="slider-caption">
-							<h2>Get it for free!</h2>
-						</div>
-					</div>
-				</div>
-			</div>
-		</li>
+			</li>
+		@endforeach
+		@endif
 	</ul> <!-- /.bxslider -->
 	<div class="bx-thumbnail-wrapper">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<div id="bx-pager">
-						<a data-slide-index="0" href=""><img src="{{ asset('vendors/web_template/images/slider/thumb1.jpg') }}" alt="image 1" /></a>
-						<a data-slide-index="1" href=""><img src="{{ asset('vendors/web_template/images/slider/thumb2.jpg') }}" alt="image 2" /></a>
-						<a data-slide-index="2" href=""><img src="{{ asset('vendors/web_template/images/slider/thumb3.jpg') }}" alt="image 3" /></a>
-						<a data-slide-index="3" href=""><img src="{{ asset('vendors/web_template/images/slider/thumb4.jpg') }}" alt="image 4" /></a>
-						<a data-slide-index="4" href=""><img src="{{ asset('vendors/web_template/images/slider/thumb5.jpg') }}" alt="image 5" /></a>
-					</div>
+					<div id="bx-pager"></div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+@section('script_call')
+	@parent
+	<script>
+		var $slide_section = $('.site-slider'),
+				$bx_Pager = $slide_section.find('#bx-pager');
+		$slide_section.find('ul.bxslider li').each(function () {
+			var $item = $('<a />').appendTo($bx_Pager);
+			$item.attr({
+				'data-slide-index':$(this).index(),
+				'href':''
+			});
+			if ($(this).hasClass('active')) {
+				$item.addClass('active')
+			}
+			$item.append('<img src="'+$(this).attr('data-thumbnail-url')+'" alt="'+$(this).attr('data-thumbnail-alt')+'" />')
+		});
+
+		(function (window, $) {
+			'use strict';
+
+			// Cache document for fast access.
+			var document = window.document;
+
+
+			function mainSlider() {
+				$('.bxslider').bxSlider({
+					pagerCustom: '#bx-pager',
+					mode: 'fade',
+					nextText: '',
+					prevText: '',
+					auto:true
+				});
+			}
+
+			mainSlider();
+
+
+
+			var $links = $(".bx-wrapper .bx-controls-direction a, #bx-pager a");
+			$links.click(function(){
+				$(".slider-caption").removeClass('animated fadeInLeft');
+				$(".slider-caption").addClass('animated fadeInLeft');
+			});
+
+			$(".bx-controls").addClass('container');
+			$(".bx-next").addClass('fa fa-angle-right');
+			$(".bx-prev").addClass('fa fa-angle-left');
+
+		})(window, jQuery);
+	</script>
+@endsection

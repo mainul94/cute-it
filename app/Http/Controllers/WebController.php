@@ -7,12 +7,23 @@ use App\Category;
 use App\Country;
 use App\Page;
 use App\Region;
+use App\Slide;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
 class WebController extends Controller
 {
+	/**
+	 * @param Request $request
+	 */
+	public function welcome(Request $request)
+	{
+		$slide_id = 1; //Todo Come from Setup
+		$slide = Slide::find($slide_id);
+		return view('welcome',compact('slide'));
+	}
+
 	/**
 	 * @param Request $request
 	 * @param Region $region

@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::group(['prefix'=>'admin'], function () {
     Route::resource('user','UserController');
     Route::resource('role','RoleController');
@@ -44,6 +40,7 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 Route::group(['middleware'=>'web'], function () {
+    Route::get('/', 'WebController@welcome');
     Route::get('map/{region?}','WebController@map');
     Route::get('country/{country}','WebController@country');
     Route::get('page/{page}','WebController@page');

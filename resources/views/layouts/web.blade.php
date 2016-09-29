@@ -18,7 +18,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @include('_partial.meta')
-    <title>UHSSP | @yield('title') </title>
+    <title>@stack('title')|UHSSP </title>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet">
     <!-- Bootstrap -->
     <link href="{{ asset('vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -33,8 +33,7 @@
 
     @yield('head')
     <!-- Custom Theme Style -->
-{{--    <link href="{{ asset('css/web_custom.css') }}" rel="stylesheet">--}}
-    {{--ToDo add file web_custom.css in asset and link to public--}}
+    <link href="{{ asset('css/web_custom.css') }}" rel="stylesheet">
 
     <script src="{{ asset('vendors/web_template/js/vendor/modernizr-2.6.2.min.js') }}"></script>
     @yield('head_script')
@@ -45,46 +44,9 @@
 <![endif]-->
 
 <div id="front">
-    <div class="site-header">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-sm-6 col-xs-6">
-                    <div id="templatemo_logo">
-                        <h1><a href="#">Sprint</a></h1>
-                    </div> <!-- /.logo -->
-                </div> <!-- /.col-md-4 -->
-                <div class="col-md-8 col-sm-6 col-xs-6">
-                    <a href="#" class="toggle-menu"><i class="fa fa-bars"></i></a>
-                    <div class="main-menu">
-                        <ul>
-                            <li><a href="#front">Home</a></li>
-                            <li><a href="#services">Services</a></li>
-                            <li><a href="#products">Products</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                        </ul>
-                    </div> <!-- /.main-menu -->
-                </div> <!-- /.col-md-8 -->
-            </div> <!-- /.row -->
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="responsive">
-                        <div class="main-menu">
-                            <ul>
-                                <li><a href="#front">Home</a></li>
-                                <li><a href="#services">Services</a></li>
-                                <li><a href="#products">Products</a></li>
-                                <li><a href="#contact">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> <!-- /.container -->
-    </div> <!-- /.site-header -->
+    @include('layouts._partial._web._header')
 </div> <!-- /#front -->
-
-@include('layouts._partial._web._slide')
-@yield('content')
+@yield('sections')
 
 
 <!-- jQuery -->
@@ -93,7 +55,7 @@
 <script src="{{ asset('vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('vendors/web_template/js/jquery.easing-1.3.js') }}"></script>
 <script src="{{ asset('vendors/web_template/js/plugins.js') }}"></script>
-<script src="{{ asset('vendors/web_template/js/main.js') }}"></script>
+{{--<script src="{{ asset('vendors/web_template/js/main.js') }}"></script>--}}
 
 <!-- Custom Theme Scripts -->
 {{--<script src="{{ asset('js/web_custom.js') }}"></script>--}}

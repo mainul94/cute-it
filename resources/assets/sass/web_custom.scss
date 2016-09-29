@@ -1,2 +1,16 @@
 // @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+.navbar-brand {
+  img {
+    height: 51px;
+    width: 175px;
+    margin-top: -15px;
+    margin-bottom: -15px;
+  }
+}
 
+#bx-pager {
+  img {
+    max-width: 150px;
+    max-height: 150px;
+  }
+}
