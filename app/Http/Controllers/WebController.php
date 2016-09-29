@@ -16,6 +16,7 @@ class WebController extends Controller
 {
 	/**
 	 * @param Request $request
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
 	public function welcome(Request $request)
 	{
@@ -37,20 +38,33 @@ class WebController extends Controller
 	/**
 	 * @param Request $request
 	 * @param Country $country
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
 	 */
 	public function country(Request $request, Country $country)
 	{
-		//
+
+		if ($request->ajax()) {
+			return response()->json([
+				'page' => $country
+			]);
+		}
+		return view('web.country', compact('country'));
 	}
 
 
 	/**
 	 * @param Request $request
 	 * @param Page $page
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
 	 */
 	public function page(Request $request, Page $page)
 	{
-		//
+		if ($request->ajax()) {
+			return response()->json([
+				'page' => $page
+			]);
+		}
+		return view('web.page', compact('page'));
 	}
 
 
@@ -58,9 +72,20 @@ class WebController extends Controller
 	 * @param Request $request
 	 * @param Category $category
 	 * @param Article $article
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
 	 */
 	public function category(Request $request, Category $category=null, Article $article=null)
 	{
-		//
+		if ($request->ajax()) {
+			return response()->json([
+				'category' => $category,
+				'article' => $article
+			]);
+		}
+		if (empty($article)) {
+			return view('web.category', compact('category'));
+		} else {
+			return view('web.article', compact('article'));
+		}
 	}
 }

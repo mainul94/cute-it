@@ -49,6 +49,9 @@
 @yield('sections')
 
 
+<div class="site-footer">
+    @include('layouts._partial._web._footer')
+</div> <!-- /.site-footer -->
 <!-- jQuery -->
 <script src="{{ asset('vendors/jquery/dist/jquery.min.js') }}"></script>
 <!-- Bootstrap -->

@@ -31,6 +31,14 @@ class ViewCustomProvider extends ServiceProvider
             return $view->with('menus',$menus->childrenFirstDepth);
         });
 
+        view()->composer('layouts._partial._web._footer', function ($view) {
+            $primry_menu = 1; //Todo Come from Setup
+            $menus = Menu::find($primry_menu);
+            $current_url = request()->fullUrl();
+            $view->with('current_url', $current_url);
+            return $view->with('footer_menus',$menus->children);
+        });
+
         /**
          * Added menuGenerate Function in Html builder
          */
