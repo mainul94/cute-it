@@ -9,20 +9,17 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-8 col-sm-6">
-                    <span id="copyright">
-                    	Copyright &copy; 2014 <a href="#">Company Name</a>
-                    </span>
-			<nav class="navbar navbar-inverse navbar-static-top">
-				<div class="container-fluid">
+			<div class="row">
+				<nav class="navbar footer-nav">
 					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#primary_menu" aria-expanded="false">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#footer_menu" aria-expanded="false">
 							<span class="sr-only">Toggle navigation</span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
 					</div>
-					<div class="collapse navbar-collapse" id="primary_menu">
+					<div class="collapse navbar-collapse" id="footer_menu">
 						<ul class="nav navbar-nav">
 							@foreach($footer_menus as $menu)
 								<li class="{{ preg_match('#^'.$menu->url.'?#i', $current_url)===1?'active':'' }}">
@@ -31,8 +28,8 @@
 							@endforeach
 						</ul>
 					</div><!-- /.navbar-collapse -->
-				</div><!-- /.container-fluid -->
-			</nav>
+				</nav>
+			</div>
 		</div> <!-- /.col-md-6 -->
 		<div class="col-md-4 col-sm-6">
 			<ul class="social">
@@ -45,3 +42,13 @@
 		</div> <!-- /.col-md-6 -->
 	</div> <!-- /.row -->
 </div> <!-- /.container -->
+<section class="container-flude">
+	<div class="container">
+
+		<div class="col-xs-12">
+			<span id="copyright">
+				Copyright &copy; 2016 <a href="{{ url('') }}"><strong>UHSSP</strong></a>
+			</span>
+		</div>
+	</div>
+</section>

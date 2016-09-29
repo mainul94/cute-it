@@ -8,4 +8,23 @@
   max-width: 150px;
   max-height: 150px; }
 
+.footer-nav ul.nav li a:hover {
+  background: none;
+  color: #222; }
+
+.footer-nav .navbar-toggle {
+  border-color: aliceblue; }
+  .footer-nav .navbar-toggle .icon-bar {
+    background-color: #fff; }
+
+.site-footer {
+  padding-bottom: 0; }
+  .site-footer section {
+    background-color: #55c58f;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    border-top: 1px solid #2ea25f; }
+  .site-footer span {
+    margin-top: auto; }
+
 /*# sourceMappingURL=web_custom.css.map */

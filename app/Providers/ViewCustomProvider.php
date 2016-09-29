@@ -32,7 +32,7 @@ class ViewCustomProvider extends ServiceProvider
         });
 
         view()->composer('layouts._partial._web._footer', function ($view) {
-            $primry_menu = 1; //Todo Come from Setup
+            $primry_menu = 2; //Todo Come from Setup
             $menus = Menu::find($primry_menu);
             $current_url = request()->fullUrl();
             $view->with('current_url', $current_url);

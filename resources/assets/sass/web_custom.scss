@@ -14,3 +14,32 @@
     max-height: 150px;
   }
 }
+.footer-nav {
+  ul.nav {
+     li {
+       a:hover {
+         background: none;
+         color: #222;
+       }
+     }
+  }
+  .navbar-toggle{
+    border-color: aliceblue;
+    .icon-bar {
+      background-color: #fff;
+    }
+  }
+
+}
+.site-footer {
+  padding-bottom: 0;
+  section {
+    background-color: #55c58f;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    border-top: 1px solid #2ea25f;
+  }
+  span {
+    margin-top: auto;
+  }
+}
