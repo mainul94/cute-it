@@ -11,18 +11,16 @@
 @section('sections')
 	<div class="clearfix"></div>
 	<section class="content-section">
-		<div class="container">
-			<h4 class="section-title">{!! $article->title !!}</h4>
-		</div>
 		@if(isset($article->slide_id))
 			@include('layouts._partial._web._slide',['slide'=>$article->slide])
 		@endif
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
+					<h4 class="section-title">{!! $article->title !!}</h4>
 					<article class="article">
 						<header class="text-center" style="background-color: {{ $article->bg_color }}; color: white;">
-							@if(isset($article->feature_image))
+							@if(isset($article->feature_image) && empty($article->slide_id))
 								<div class="feature-image">
 									<img src="{!! asset($article->feature_image) !!}" alt="{!! $article->title !!}">
 								</div>

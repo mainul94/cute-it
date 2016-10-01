@@ -25,7 +25,7 @@
     {!! Form::label('bg_color','Background Color',['class'=>'col-xs-12 required']) !!}
     <div class="col-xs-12">
 		<div class="input-group bg_color colorpicker-element">
-			@php $bg_color = !empty($id) && $id->bg_color ? $id->bg_color: '#00627B' @endphp
+			@php $bg_color = !empty($id) && $id->bg_color ? $id->bg_color: '#55c58f' @endphp
 			{!! Form::text('bg_color', $bg_color, ['class'=>'form-control col-md-7 col-xs-12', 'placeholder'=>'#1820d9']) !!}
 			<span class="input-group-addon"><i></i></span>
 		</div>
@@ -37,7 +37,7 @@
     {!! Form::label('sidebar_bg_color','Slide Background Color',['class'=>'col-xs-12 required']) !!}
     <div class="col-xs-12">
 		<div class="input-group sidebar_bg_color colorpicker-element">
-			@php $sidebar_bg_color = !empty($id) && $id->sidebar_bg_color ? $id->sidebar_bg_color: '#00627B' @endphp
+			@php $sidebar_bg_color = !empty($id) && $id->sidebar_bg_color ? $id->sidebar_bg_color: '#55c58f' @endphp
 			{!! Form::text('sidebar_bg_color', $sidebar_bg_color, ['class'=>'form-control col-md-7 col-xs-12', 'placeholder'=>'#1820d9']) !!}
 			<span class="input-group-addon"><i></i></span>
 		</div>
@@ -81,6 +81,7 @@
 	<script>
 		$('.bg_color').colorpicker();
 		$('.sidebar_bg_color').colorpicker();
+		getvalueForSelect2('[name=slide_id]','slides',['id','title'],[],'id','title');
 
 		var featureImage = $("#feature_image_brows").FileManager({
 			baseUrl:"{{ url('/') }}",

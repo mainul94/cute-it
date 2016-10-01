@@ -52,7 +52,7 @@
 				{!! Form::label('ch_bg_color','Background Color',['class'=>'col-xs-12 required']) !!}
 				<div class="col-xs-12">
 					<div class="input-group bg_color colorpicker-element">
-						@php $bg_color = !empty($child) && $child->bg_color ? $child->bg_color: '#00627B' @endphp
+						@php $bg_color = !empty($child) && $child->bg_color ? $child->bg_color: '#55c58f' @endphp
 						{!! Form::text('ch_bg_color[]', $bg_color, ['class'=>'form-control col-md-7 col-xs-12', 'placeholder'=>'#1820d9']) !!}
 						<span class="input-group-addon"><i></i></span>
 					</div>
