@@ -27,4 +27,18 @@
   .site-footer span {
     margin-top: auto; }
 
+.product-item {
+  margin-bottom: 25px; }
+  .product-item .item-thumb .overlay {
+    border: 5px solid;
+    color: white; }
+  .product-item .item-thumb .feature-image {
+    border-bottom: 8px solid transparent; }
+  .product-item .item-thumb:hover .overlay {
+    opacity: .95; }
+
+@media (min-width: 992px) {
+  .item-thumb {
+    height: 450px; } }
+
 /*# sourceMappingURL=web_custom.css.map */

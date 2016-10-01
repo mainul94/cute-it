@@ -12,6 +12,7 @@ class Article extends Model
 	use CreateUpdateByRecord, RouteNameSlug, CommonRelation;
 
 
+
 	public function getCategoryIdAttribute()
 	{
 		return $this->categories()->lists('category_id')->all();
