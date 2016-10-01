@@ -7,3 +7,9 @@
  */
 ?>
 @extends('layouts.web')
+@push('title') Article @endpush
+@section('sections')
+	<section>
+		<h3>Hid</h3>
+	</section>
+@endsection

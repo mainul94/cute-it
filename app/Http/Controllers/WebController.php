@@ -82,10 +82,10 @@ class WebController extends Controller
 				'article' => $article
 			]);
 		}
-		if (empty($article)) {
-			return view('web.category', compact('category'));
-		} else {
+		if ($request->route()->getParameter('article')) {
 			return view('web.article', compact('article'));
+		} else {
+			return view('web.category', compact('category'));
 		}
 	}
 }
