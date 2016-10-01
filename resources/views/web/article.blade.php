@@ -9,7 +9,37 @@
 @extends('layouts.web')
 @push('title') Article @endpush
 @section('sections')
-	<section>
-		<h3>Hid</h3>
+	<div class="clearfix"></div>
+	<section class="content-section">
+		<div class="container">
+			<h4 class="section-title">{!! $article->title !!}</h4>
+		</div>
+		@if(isset($article->slide_id))
+			@include('layouts._partial._web._slide',['slide'=>$article->slide])
+		@endif
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<article class="article">
+						<header class="text-center" style="background-color: {{ $article->bg_color }}; color: white;">
+							@if(isset($article->feature_image))
+								<div class="feature-image">
+									<img src="{!! asset($article->feature_image) !!}" alt="{!! $article->title !!}">
+								</div>
+							@endif
+								<span>{!! $article->created_at->format('l jS \\of M Y') !!} | <em class="price">Bangladesh{{-- Todo this get my Dynamicly from country --}}</em></span>
+						</header>
+						<div class="row">
+							<div class="col-md-9">
+								{!! $article->content !!}
+							</div>
+							<div class="col-md-3">
+
+							</div>
+						</div>
+					</article>
+				</div> <!-- /.col-md-12 -->
+			</div> <!-- /.row -->
+		</div> <!-- /.container -->
 	</section>
 @endsection

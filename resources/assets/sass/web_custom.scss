@@ -1,4 +1,22 @@
 // @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+#primary_menu {
+  > ul.navbar-nav {
+    > li > a {
+      font-weight: 600;
+      font-size: 18px;
+      color: white;
+      padding: 40px 15px;
+      min-width: 150px;
+      text-align: center;
+    }
+    >li.active > a{
+      background: url(../vendors/web_template/images/active-state.png) no-repeat;
+      background-position: center 65px;
+    }
+  }
+
+}
+/////////////
 .navbar-brand {
   img {
     height: 51px;
@@ -63,5 +81,16 @@
 @media (min-width: 992px) {
   .item-thumb {
     height: 450px;
+  }
+}
+/////////////
+.article {
+  header {
+    color: white;
+    padding: 15px;
+    .feature-image {
+      display: block;
+      margin-bottom: 10px;
+    }
   }
 }
