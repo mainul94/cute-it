@@ -8,7 +8,7 @@
 ?>
 <div class="page-title">
     <div class="title_left">
-        @yield('page_title_left')
+        @stack('page_title_left')
         {{--<h3>{!! $page_title or "" !!} <small>{!! $page_sub_title or "" !!}</small></h3>--}}
     </div>
     @if(!empty($isSearch))

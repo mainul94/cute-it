@@ -32,3 +32,22 @@ if (!function_exists('get_size_to_user')) {
 		}
 	}
 }
+if (!function_exists('setting')) {
+	/**
+	 * @param null $property
+	 * @param null $group
+	 * @return null if group then return collection array or property return a single collection
+	 * if $group argument send then must be return Group Result
+	 */
+	function setting($property=null, $group=null)
+	{
+		$setting = new \App\Setting();
+		if (empty($property) && empty($group)) {
+			return null;
+		} elseif (empty($group)) {
+			return $setting->where('property',$property)->first();
+		} else {
+			return $setting->where('s_group',$group)->get();
+		}
+	}
+}
