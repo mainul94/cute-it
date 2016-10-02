@@ -22,7 +22,7 @@
 					<div class="collapse navbar-collapse" id="footer_menu">
 						<ul class="nav navbar-nav">
 							@foreach($footer_menus as $menu)
-								<li class="{{ preg_match('#^'.$menu->url.'?#i', $current_url)===1?'active':'' }}">
+								<li class="{{ !empty($menu->url)?(preg_match('#^'.$menu->url.'?#i', $current_url)===1?'active':''):'#' }}">
 									<a href="{{ $menu->url }}">{{ $menu->title }}</a>
 								</li>
 							@endforeach

@@ -91,6 +91,10 @@
     .feature-image {
       display: block;
       margin-bottom: 10px;
+      overflow: hidden;
+      img {
+        max-width: 100%;
+      }
     }
   }
 }
