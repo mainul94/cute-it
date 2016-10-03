@@ -10,4 +10,5 @@ class Category extends Model
 		'slide_id', 'template'];
 
 	use CreateUpdateByRecord, RouteNameSlug, CommonRelation;
+
 }

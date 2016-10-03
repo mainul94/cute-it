@@ -22,13 +22,13 @@ $menus = collect([
                                 'icon' => 'fa fa-list-alt',
                                 'children'=>collect([
                                         collect([
-                                            'title' =>'Articles',
+                                                'title' =>'Articles',
                                                 'link'=>action('ArticleController@index'),
                                                 'label_class' => 'label label-success pull-right',
                                                 'label' => 'All'
                                         ]),
                                         collect([
-                                            'title' =>'Create Article',
+                                                'title' =>'Create Article',
                                                 'link'=>action('ArticleController@create'),
                                                 'label_class' => 'label label-info pull-right',
                                                 'label' => 'New'
@@ -40,13 +40,13 @@ $menus = collect([
                                 'icon' => 'fa fa-tags',
                                 'children'=>collect([
                                         collect([
-                                            'title' =>'Categories',
+                                                'title' =>'Categories',
                                                 'link'=>action('CategoryController@index'),
                                                 'label_class' => 'label label-success pull-right',
                                                 'label' => 'All'
                                         ]),
                                         collect([
-                                            'title' =>'Create Category',
+                                                'title' =>'Create Category',
                                                 'link'=>action('CategoryController@create'),
                                                 'label_class' => 'label label-info pull-right',
                                                 'label' => 'New'
@@ -58,13 +58,13 @@ $menus = collect([
                                 'icon' => 'fa fa-file',
                                 'children'=>collect([
                                         collect([
-                                            'title' =>'Pages',
+                                                'title' =>'Pages',
                                                 'link'=>action('PageController@index'),
                                                 'label_class' => 'label label-success pull-right',
                                                 'label' => 'All'
                                         ]),
                                         collect([
-                                            'title' =>'Create Page',
+                                                'title' =>'Create Page',
                                                 'link'=>action('PageController@create'),
                                                 'label_class' => 'label label-info pull-right',
                                                 'label' => 'New'
@@ -76,13 +76,13 @@ $menus = collect([
                                 'icon' => 'fa fa-slideshare',
                                 'children'=>collect([
                                         collect([
-                                            'title' =>'Slides',
+                                                'title' =>'Slides',
                                                 'link'=>action('SlideController@index'),
                                                 'label_class' => 'label label-success pull-right',
                                                 'label' => 'All'
                                         ]),
                                         collect([
-                                            'title' =>'Create Slide',
+                                                'title' =>'Create Slide',
                                                 'link'=>action('SlideController@create'),
                                                 'label_class' => 'label label-info pull-right',
                                                 'label' => 'New'
@@ -94,13 +94,13 @@ $menus = collect([
                                 'icon' => 'fa fa-play-circle-o',
                                 'children'=>collect([
                                         collect([
-                                            'title' =>'Media',
+                                                'title' =>'Media',
                                                 'link'=>action('MediaController@index'),
                                                 'label_class' => 'label label-success pull-right',
                                                 'label' => 'All'
                                         ]),
                                         collect([
-                                            'title' =>'Add Media',
+                                                'title' =>'Add Media',
                                                 'link'=>action('MediaController@create'),
                                                 'label_class' => 'label label-info pull-right',
                                                 'label' => 'New'
@@ -228,8 +228,8 @@ $menus = collect([
                         ]),
                         collect([
                                 'title'=>'Menu',
-                                'icon' => 'fa fa-user-secret',
-                                'label_class' => 'fa fa-bars',
+                                'icon' => 'fa fa-bars',
+                                'label_class' => 'fa fa-chevron-down',
                                 'label' => '',
                                 'children' => collect([
                                         collect([

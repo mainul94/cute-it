@@ -98,3 +98,25 @@
     }
   }
 }
+/////////////
+.feature_slide {
+  padding: 15px 0px;
+  .carousel-inner {
+    height: 300px;
+    overflow: hidden;
+    .item{
+      height: inherit;
+      img {
+        height: inherit;
+      }
+    }
+  }
+  .carousel-control {
+    background: none;
+  }
+  @media screen and (min-width:677px) {
+    .caption {
+      margin-left: -15px;
+    }
+  }
+}

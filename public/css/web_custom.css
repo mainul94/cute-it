@@ -61,7 +61,21 @@
     margin-bottom: 10px;
     overflow: hidden; }
     .article header .feature-image img {
-      max-width: 100%;
-      display: block; }
+      max-width: 100%; }
+
+.feature_slide {
+  padding: 15px 0px; }
+  .feature_slide .carousel-inner {
+    height: 300px;
+    overflow: hidden; }
+    .feature_slide .carousel-inner .item {
+      height: inherit; }
+      .feature_slide .carousel-inner .item img {
+        height: inherit; }
+  .feature_slide .carousel-control {
+    background: none; }
+  @media screen and (min-width: 677px) {
+    .feature_slide .caption {
+      margin-left: -15px; } }
 
 /*# sourceMappingURL=web_custom.css.map */
