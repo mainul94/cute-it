@@ -6,7 +6,7 @@
  * Time: 5:47 PM
  */?>
 <div class="site-slider">
-	<ul class="bxslider">
+	<ul class="bxslider" style="background-color: {{$slide->bg_color}}">
 		@if(isset($slide->slideChildren))
 			@foreach($slide->slideChildren as $key=>$child)
 			<li data-thumbnail-url="{{ $child->imageMedia->thumbnail_url }}" data-thumbnail-alt="{!! $child->title !!}">
@@ -21,7 +21,7 @@
 		@endforeach
 		@endif
 	</ul> <!-- /.bxslider -->
-	<div class="bx-thumbnail-wrapper">
+	<div class="bx-thumbnail-wrapper" style="background-color: {{$slide->bg_color}}">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
