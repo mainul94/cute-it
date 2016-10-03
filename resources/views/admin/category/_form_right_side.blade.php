@@ -45,7 +45,8 @@
 <div class="form-group {!! $errors->has('template')? 'has-error':'' !!}">
     {!! Form::label('template','Template',['class'=>'control-label col-md-3 required']) !!}
     <div class="col-xs-12">
-        {!! Form::select('template',['Default'=>'Default'], null, ['class'=>'form-control col-md-7 col-xs-12']) !!}
+	    @inject('category','\App\Category')
+        {!! Form::select('template',$category->templates, null, ['class'=>'form-control col-md-7 col-xs-12']) !!}
         {!! $errors->first('template','<span class="help-block">:message</span>') !!}
     </div>
 </div>

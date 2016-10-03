@@ -11,4 +11,11 @@ class Category extends Model
 
 	use CreateUpdateByRecord, RouteNameSlug, CommonRelation;
 
+	protected $templates = ['Default'=>'Default', 'List'=>'List'];
+
+	public function getTemplatesAttribute()
+	{
+		return $this->templates;
+	}
+
 }

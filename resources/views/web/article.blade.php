@@ -25,7 +25,7 @@
 									<img src="{!! asset($article->feature_image) !!}" alt="{!! $article->title !!}">
 								</div>
 							@endif
-								<span>{!! $article->created_at->format('l jS \\of M Y') !!} | <em class="price">Bangladesh{{-- Todo this get my Dynamicly from country --}}</em></span>
+								<span>{!! $article->created_at->format('l jS \\of M Y') !!} <em class="price">{!! $article->country?' | '.$article->country->title:'' !!}</em></span>
 						</header>
 						<div class="row">
 							<div class="col-md-9">

@@ -6,6 +6,15 @@
  * Time: 4:44 PM
  */
 ?>
+<div class="form-group {!! $errors->has('is_feature')? 'has-error':'' !!}">
+	<div class="col-xs-12">
+		{!! Form::checkbox('is_feature',1,null) !!}
+		{!! Form::label('is_feature','Is Feature') !!}
+		{!! $errors->first('is_feature','<span class="help-block">:message</span>') !!}
+	</div>
+</div>
+
+
 <div class="form-group {!! $errors->has('feature_image')?'has-error':'' !!}">
 	<div class="col-xs-12">
 		{{--<button class="btn btn-sm" type="button" id="feature_image_brows">Brows</button>--}}
@@ -62,10 +71,29 @@
     </div>
 </div>
 
+<div class="form-group {!! $errors->has('country_id')? 'has-error':'' !!}">
+    {!! Form::label('country_id','Country',['class'=>'control-label col-md-3 required']) !!}
+    <div class="col-xs-12">
+	    @php $countries = !empty($id) && $id->country ? $id->country->lists('title','id') : [] @endphp
+        {!! Form::select('country_id',$countries, null, ['class'=>'form-control col-md-7 col-xs-12']) !!}
+        {!! $errors->first('country_id','<span class="help-block">:message</span>') !!}
+    </div>
+</div>
+
+<div class="form-group {!! $errors->has('division_id')? 'has-error':'' !!}">
+    {!! Form::label('division_id','Division',['class'=>'control-label col-md-3 required']) !!}
+    <div class="col-xs-12">
+	    @php $divisions = !empty($id) && $id->division ? $id->division->lists('title','id') : [] @endphp
+        {!! Form::select('division_id',$divisions, null, ['class'=>'form-control col-md-7 col-xs-12']) !!}
+        {!! $errors->first('division_id','<span class="help-block">:message</span>') !!}
+    </div>
+</div>
+
 <div class="form-group {!! $errors->has('template')? 'has-error':'' !!}">
     {!! Form::label('template','Template',['class'=>'control-label col-md-3 required']) !!}
     <div class="col-xs-12">
-        {!! Form::select('template',['Default'=>'Default'], null, ['class'=>'form-control col-md-7 col-xs-12']) !!}
+	    @inject('article','\App\Article')
+        {!! Form::select('template',$article->templates, null, ['class'=>'form-control col-md-7 col-xs-12']) !!}
         {!! $errors->first('template','<span class="help-block">:message</span>') !!}
     </div>
 </div>
@@ -82,6 +110,9 @@
 		$('.bg_color').colorpicker();
 		$('.sidebar_bg_color').colorpicker();
 		getvalueForSelect2('[name=slide_id]','slides',['id','title'],[],'id','title');
+		getvalueForSelect2('[name=country_id]','countries',['id','title'],[],'id','title');
+		getvalueForSelect2('[name=division_id]','divisions',['id','title'],[],'id','title');
+
 
 		var featureImage = $("#feature_image_brows").FileManager({
 			baseUrl:"{{ url('/') }}",
