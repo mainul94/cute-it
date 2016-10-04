@@ -122,4 +122,13 @@ trait CommonRelation
 	{
 		return $this->belongsToMany(Article::class,'article_article','article_id','related_id');
 	}
+
+
+	/**
+	 * @return mixed
+	 */
+	public function widgets()
+	{
+		return $this->belongsToMany(Widget::class);
+	}
 }

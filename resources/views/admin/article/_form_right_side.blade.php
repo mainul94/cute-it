@@ -6,6 +6,10 @@
  * Time: 4:44 PM
  */
 ?>
+
+<div class="col-xs-12">
+	{!! Form::submit('Save',['class'=>'btn btn-info pull-right']) !!}
+</div>
 <div class="form-group {!! $errors->has('is_feature')? 'has-error':'' !!}">
 	<div class="col-xs-12">
 		{!! Form::checkbox('is_feature',1,null) !!}

@@ -60,6 +60,10 @@
 <div class="col-md-3">
     @include('admin.article._form_right_side')
 </div>
+<div class="col-xs-12">
+    <h4>Widget</h4>
+    @include('admin.article._widget')
+</div>
 
 <div class="col-xs-12">
     {!! Form::submit('Save',['class'=>'btn btn-info pull-right']) !!}

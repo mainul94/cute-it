@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\Widget;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -47,6 +48,30 @@ class ArticleController extends Controller
 	{
 		$model->categories()->sync($request->get('category_id')?$request->get('category_id'):[]);
 		$model->relatedArticles()->sync($request->get('related_id')?$request->get('related_id'):[]);
+		$model->widgets()->sync($this->insertOrUpdateChild($request));
+	}
+
+	public function insertOrUpdateChild(Request $request)
+	{
+		$children = [];
+		$values = $request->all();
+		foreach ($values['wd_title'] as $key=>$val){
+			if (!empty($values['wd_id'][$key])) {
+				$child = Widget::find($values['wd_id'][$key]);
+			} else {
+				$child = new Widget();
+			}
+			$child->fill([
+				'title' => $values['wd_title'][$key],
+//				'content' => $values['wd_content'][$key],
+				'summery' => $values['wd_summery'][$key],
+				'bg_color' => $values['wd_bg_color'][$key],
+				'feature_image' => $values['wd_feature_image'][$key],
+				'feature_caption' => $values['wd_feature_caption'][$key]
+			])->save();
+			array_push($children, $child->id);
+		}
+		return $children;
 	}
 
 

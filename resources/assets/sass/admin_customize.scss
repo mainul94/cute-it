@@ -38,11 +38,15 @@
   }
 }
 
-.slide_child_row {
+.widget_slide_row_wrapper {
+  background-color: #a6e1ec;
+}
+
+.slide_child_row, .widget_slide_row {
   padding-top: 15px;
   padding-bottom: 15px;
 }
-.slide_child_row:nth-child(odd) {
+.slide_child_row:nth-child(odd), .widget_slide_row:nth-child(odd) {
   background-color: #eef7f9;
 }
 // DD

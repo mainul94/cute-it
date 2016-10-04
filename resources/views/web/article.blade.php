@@ -17,7 +17,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h4 class="section-title">{!! $article->title !!}</h4>
+					<h4 class="section-title text-center">{!! $article->title !!}</h4>
 					<article class="article">
 						<header class="text-center" style="background-color: {{ $article->bg_color }}; color: white;">
 							@if(isset($article->feature_image) && empty($article->slide_id))
