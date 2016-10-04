@@ -63,6 +63,15 @@
     .article header .feature-image img {
       max-width: 100%; }
 
+.widget-item {
+  padding: 15px 0;
+  margin-bottom: 10px;
+  display: block;
+  float: left; }
+
+.widget-item:first-child {
+  margin-top: 10px; }
+
 .feature_slide {
   padding: 15px 0px; }
   .feature_slide .carousel-inner {

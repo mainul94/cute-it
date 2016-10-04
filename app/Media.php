@@ -45,7 +45,10 @@ class Media extends Model
 				list($width, $height) = getimagesize($data);
 				$this->attributes['file_dimension'] = $width . 'x' . $height;
 			}else {
-				Storage::put($path.$data->getClientOriginalName(),file_get_contents($data->getRealPath()));
+
+//				dd($dir.$data->getClientOriginalName());
+				$data->move($dir,$data->getClientOriginalName());
+//				Storage::put($dir.$data->getClientOriginalName(),file_get_contents($data->getRealPath()));
 			}
 			$this->attributes['url'] = $path.$data->getClientOriginalName();
 			$this->attributes['thumbnail_url'] = !empty($thumbnail)? $path.'300x300_'.$data->getClientOriginalName():null;
