@@ -20,7 +20,7 @@ class WebController extends Controller
 	 */
 	public function welcome(Request $request)
 	{
-		$slide_id = 1; //Todo Come from Setup
+		$slide_id = (int) setting('home_slide')->property_values;
 		$slide = Slide::find($slide_id);
 		return view('welcome',compact('slide'));
 	}
@@ -45,7 +45,7 @@ class WebController extends Controller
 
 		if ($request->ajax()) {
 			return response()->json([
-				'page' => $country
+				'country' => $country
 			]);
 		}
 		return view('web.country', compact('country'));
