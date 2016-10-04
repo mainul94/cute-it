@@ -72,6 +72,10 @@
 .widget-item:first-child {
   margin-top: 10px; }
 
+.article_list_view {
+  padding-top: 15px;
+  padding-bottom: 15px; }
+
 .feature_slide {
   padding: 15px 0px; }
   .feature_slide .carousel-inner {

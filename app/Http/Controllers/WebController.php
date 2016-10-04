@@ -31,7 +31,18 @@ class WebController extends Controller
 	 */
 	public function map(Request $request, Region $region=null)
 	{
-		//
+		if (empty($region->id)) {
+			$regions = Region::all();
+		}else {
+			$regions = null;
+		}
+		if ($request->ajax()) {
+			return response()->json([
+				'region' => $region,
+				'regions' => $regions
+			]);
+		}
+		return view('web.map', compact('region','regions'));
 	}
 
 

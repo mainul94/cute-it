@@ -14,7 +14,7 @@
  * Time: 1:39 PM
  */
 ?>
-<div class="row">
+<div class="row article_list_view">
 	@foreach($articles as $article)
 		@if(empty($category))
 			@php $category = $article->categories->first() @endphp
