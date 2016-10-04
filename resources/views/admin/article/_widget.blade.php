@@ -23,6 +23,8 @@
 
 @section('footer_script')
 	@parent
+	<!-- Bootstrap Colorpicker -->
+	<script src="{!! asset('vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js') !!}"></script>
 	<script>
 		$('.widget_slide_row').each(function (key, el){
 			$el = $(el);
@@ -34,6 +36,10 @@
 			},function (el, val) {
 				$el.find('[name^=wd_feature_image]').setupThumbnail($el.find('.image_thumbnail'),val,true);
 			});
+			$el.find('[name^=wd_summery]').summernote({
+				height:100
+			});
+//			$el.find('[name^=wd_bg_color]').colorpicker();
 		});
 		//////////////////////////////////////COPy/////////////
 		$('#widget_slide_add').on('click', function () {
@@ -46,9 +52,13 @@
 			$eliment.find('[name^=wd_feature_image]').val(null);
 			$eliment.find('[name^=wd_feature_caption]').val(null);
 			$eliment.find('[name^=wd_caption]').val(null);
-			$eliment.find('[name^=wd_bg_color]').val(null);
+//			$eliment.find('[name^=wd_bg_color]').val(null);
 			$eliment.find('[name^=wd_id]').remove();
 			$eliment.find('.image_thumbnail').html('');
+			$eliment.find('.note-editor').remove();
+			$eliment.find('[name^=wd_summery]').html('').summernote({
+				height:100
+			});
 			$eliment.find('.image_brows').first().FileManager({
 				baseUrl:"{{ url('/') }}",
 				get_url:"{{ action('MediaController@index') }}",

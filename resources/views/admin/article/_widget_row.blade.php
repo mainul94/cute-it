@@ -30,7 +30,7 @@
 		</div>
 	</div>--}}
 	<div class="col-sm-6">
-		<div class="form-group {!! $errors->has('wd_bg_color')? 'has-error':'' !!}">
+		<div class="form-group colorpicker-element {!! $errors->has('wd_bg_color')? 'has-error':'' !!}">
 			{!! Form::label('wd_bg_color','Background Color',['class'=>'required']) !!}
 			<div class="col-xs-12">
 				@php $bg_color = !empty($row) && $row->bg_color ? $row->bg_color: '#55c58f' @endphp
