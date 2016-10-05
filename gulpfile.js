@@ -23,5 +23,5 @@ elixir(function(mix) {
     // mix.copy('resources/assets/src/js/clipboard/clipboard.js','public/js/clipboard.js');
     mix.copy('resources/assets/src/js/file_manager/filemanager.js','public/js/filemanager.js');
     mix.copy('resources/assets/src/js/jquery.nestable.js','public/js/jquery.nestable.js');
-    // mix.copy('resources/assets/vendors/','public/vendors/');
+    mix.copy('resources/assets/vendors/','public/vendors/');
 });

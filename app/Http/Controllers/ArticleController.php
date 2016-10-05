@@ -55,21 +55,23 @@ class ArticleController extends Controller
 	{
 		$children = [];
 		$values = $request->all();
-		foreach ($values['wd_title'] as $key=>$val){
-			if (!empty($values['wd_id'][$key])) {
-				$child = Widget::find($values['wd_id'][$key]);
-			} else {
-				$child = new Widget();
-			}
-			$child->fill([
-				'title' => $values['wd_title'][$key],
+		if (array_key_exists('wd_title', $values)) {
+			foreach ($values['wd_title'] as $key=>$val){
+				if (!empty($values['wd_id'][$key])) {
+					$child = Widget::find($values['wd_id'][$key]);
+				} else {
+					$child = new Widget();
+				}
+				$child->fill([
+					'title' => $values['wd_title'][$key],
 //				'content' => $values['wd_content'][$key],
-				'summery' => $values['wd_summery'][$key],
-				'bg_color' => $values['wd_bg_color'][$key],
-				'feature_image' => $values['wd_feature_image'][$key],
-				'feature_caption' => $values['wd_feature_caption'][$key]
-			])->save();
-			array_push($children, $child->id);
+					'summery' => $values['wd_summery'][$key],
+					'bg_color' => $values['wd_bg_color'][$key],
+					'feature_image' => $values['wd_feature_image'][$key],
+					'feature_caption' => $values['wd_feature_caption'][$key]
+				])->save();
+				array_push($children, $child->id);
+			}
 		}
 		return $children;
 	}

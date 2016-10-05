@@ -29,6 +29,7 @@
 						</header>
 						<div class="row">
 							<div class="col-md-9">
+								{!! $article->summery !!}
 								{!! $article->content !!}
 							</div>
 							<div class="col-md-3" style="background-color: {{ $article->sidebar_bg_color }}">

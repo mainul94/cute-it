@@ -5,6 +5,7 @@
  * Date: 10/4/16
  * Time: 12:15 PM
  */?>
+
 @if(isset($article->widgets) && $article->widgets->count())
 	@include('web._partial._widget',['widgets'=>$article->widgets])
 @endif

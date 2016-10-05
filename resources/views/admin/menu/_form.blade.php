@@ -63,10 +63,10 @@
                 url = "{{  url('') }}" +'/' + $('select[name=category]').val();
             } else if (data == "Article") {
                 label = $('select[name=article] option:selected').text();
-                url = "{{  url('') }}" +'/' + $('select[name=article]').val();
+                url = "{{  url('') }}" +'/' + $('select[name=article]').val();{{-- ToDo add category before article slug --}}
             } else if (data == "Page") {
                 label = $('select[name=page] option:selected').text();
-                url = "{{  url('') }}" +'/' + $('select[name=page]').val();
+                url = "{{  url('') }}" +'/page/' + $('select[name=page]').val();
             }
 
             var $dd_list = $('.dd-list:first');

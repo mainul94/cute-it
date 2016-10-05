@@ -15,6 +15,7 @@
  */
 ?>
 <div class="row article_list_view">
+
 	@foreach($articles as $article)
 		@if(empty($category))
 			@php $category = $article->categories->first() @endphp
@@ -26,14 +27,14 @@
 		@endif
 		<div class="col-md-{{ empty($article->feature_image)?12:8 }}">
 			<h3>{!! $article->title !!}</h3>
-			<div class="text-left">{!! str_limit($article->summery,250) !!}</div>
-			<span>{!! $article->created_at->format('l jS \\of M Y') !!}<em class="price">{!! $article->country?' | '.$article->country->title:'' !!}</em></span>
+			<h5 class="text-left">{!! $article->summery !!}</h5>
+{{--			<span>{!! $article->created_at->format('l jS \\of M Y') !!}<em class="price">{!! $article->country?' | '.$article->country->title:'' !!}</em></span>--}}
 			<p class="text-center"><a href="{{ url($category->slug.'/'.$article->slug) }}" class="btn btn-info">View Details</a></p>
 		</div>
 
 	@endforeach
 
 	<div class="clearfix"></div>
-	{!! $articles->render() !!}
+	<div class="col-xs-12">{!! $articles->render() !!}</div>
 </div> <!-- /.row -->
 
