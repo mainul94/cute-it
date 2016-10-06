@@ -42,6 +42,21 @@
     </div>
 </div>
 
+<div class="form-group {!! $errors->has('is_show_feature_slide')? 'has-error':'' !!}">
+    <div class="col-xs-12">
+	    <label for="is_show_feature_slide">{!! Form::checkbox('is_show_feature_slide',1, null) !!} Show Feature Article Slide</label>
+        {!! $errors->first('is_show_feature_slide','<span class="help-block">:message</span>') !!}
+    </div>
+</div>
+
+<div class="form-group {!! $errors->has('slide_length')? 'has-error':'' !!}">
+	{!! Form::label('slide_length','Slide Length',['class'=>'control-label col-md-3 required']) !!}
+	<div class="col-xs-12">
+		{!! Form::number('slide_length', null, ['class'=>'form-control col-md-7 col-xs-12']) !!}
+		{!! $errors->first('slide_length','<span class="help-block">:message</span>') !!}
+	</div>
+</div>
+
 <div class="form-group {!! $errors->has('template')? 'has-error':'' !!}">
     {!! Form::label('template','Template',['class'=>'control-label col-md-3 required']) !!}
     <div class="col-xs-12">

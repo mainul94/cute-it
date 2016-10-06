@@ -15,7 +15,7 @@
                 <section class="login_content">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
-                        <h1>Login Form</h1>
+                        <h1>Login</h1>
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="E-Mail Address">
@@ -63,8 +63,8 @@
                             <br />
 
                             <div>
-                                <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                                <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                                <h1><i class="fa fa-paw"></i> UHSSP </h1>
+                                <p>©2016 All Rights Reserved.  Privacy and Terms</p>
                             </div>
                         </div>
                     </form>

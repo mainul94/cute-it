@@ -1,9 +1,15 @@
+p {
+  color: #293941;
+  font-family: ralewayregular, sans-serif;
+  font-size: 15px;
+  line-height: 20.25px; }
+
 #primary_menu > ul.navbar-nav > li > a {
   font-weight: 600;
   font-size: 18px;
   color: white;
   padding: 40px 15px;
-  min-width: 150px;
+  min-width: 130px;
   text-align: center; }
 
 #primary_menu > ul.navbar-nav > li.active > a {
