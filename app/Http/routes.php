@@ -39,10 +39,11 @@ Route::group(['middleware'=>['auth','api']], function () {
 Route::auth();
 Route::get('/home', 'HomeController@index');
 
-Route::group(['middleware'=>'web'], function () {
+Route::group(['middleware'=>'api'], function () {
     Route::get('/', 'WebController@welcome');
     Route::get('map/{region?}','WebController@map');
     Route::get('country/{country}','WebController@country');
     Route::get('page/{page}','WebController@page');
     Route::get('{category}/{article?}','WebController@category');
+    Route::post('contact','WebController@postContact');
 });

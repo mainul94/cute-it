@@ -83,6 +83,57 @@
 			</div>
 		</div>
 		{{--/Home Recent Category--}}
+		{{--Home Google Map latLng--}}
+		<div class="col-md-6">
+			<div class="x_panel">
+				<div class="x_title">
+					<h4>Home Google Map latLng</h4>
+				</div>
+				<div class="x_content">
+					@php $google_mpa_lat_lng = setting('google_mpa_lat_lng') @endphp
+					{!! Form::model($google_mpa_lat_lng, ['action'=>['SettingController@update',$google_mpa_lat_lng->id], 'method'=> 'patch']) !!}
+						{!! Form::text('property_values',$google_mpa_lat_lng->property_values,['class'=>'form-control google_mpa_lat_lng']) !!}
+					<br>
+						{!! Form::submit('Save',['class'=>'btn btn-primary pull-right']) !!}
+					{!! Form::close() !!}
+				</div>
+			</div>
+		</div>
+		{{--/Home Google Map latLng--}}
+		{{--Home Contact Email--}}
+		<div class="col-md-6">
+			<div class="x_panel">
+				<div class="x_title">
+					<h4>Home Contact Email</h4>
+				</div>
+				<div class="x_content">
+					@php $contact_email = setting('contact_email') @endphp
+					{!! Form::model($contact_email, ['action'=>['SettingController@update',$contact_email->id], 'method'=> 'patch']) !!}
+					{!! Form::text('property_values',$contact_email->property_values,['class'=>'form-control contact_email']) !!}
+					<br>
+					{!! Form::submit('Save',['class'=>'btn btn-primary pull-right']) !!}
+					{!! Form::close() !!}
+				</div>
+			</div>
+		</div>
+		{{--/Home Contact Email--}}
+		{{--Home Company Address--}}
+		<div class="col-md-6">
+			<div class="x_panel">
+				<div class="x_title">
+					<h4>Home Company Address</h4>
+				</div>
+				<div class="x_content">
+					@php $company_address = setting('company_address') @endphp
+					{!! Form::model($company_address, ['action'=>['SettingController@update',$company_address->id], 'method'=> 'patch']) !!}
+						{!! Form::textarea('property_values',$company_address->property_values,['class'=>'form-control company_address']) !!}
+					<br>
+						{!! Form::submit('Save',['class'=>'btn btn-primary pull-right']) !!}
+					{!! Form::close() !!}
+				</div>
+			</div>
+		</div>
+		{{--/Home Company Address--}}
 		{{--Social Link--}}
 		<div class="col-md-6">
 			<div class="x_panel">
@@ -178,11 +229,16 @@
 @endsection
 @section('footer_script')
 	@parent
+	<link href="{!! asset('vendors/summernote/css/summernote.css') !!}" rel="stylesheet">
+	<script src="{!! asset('vendors/summernote/js/summernote.js') !!}"></script>
 	<script src="{{ asset('js/panel.js') }}"></script>
 	<script>
 		getvalueForSelect2('.primary_menu','menus',['id','title'],[],'id','title');
 		getvalueForSelect2('.footer_menu','menus',['id','title'],[],'id','title');
 		getvalueForSelect2('.home_slide','slides',['id','title'],[],'id','title');
 		getvalueForSelect2('.home_recent_news_category','categories',['id','title'],[],'id','title');
+		$('.company_address').summernote({
+			height:100
+		});
 	</script>
 @endsection

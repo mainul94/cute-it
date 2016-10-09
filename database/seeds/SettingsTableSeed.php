@@ -61,6 +61,11 @@ class SettingsTableSeed extends Seeder
                 'property' => 'pinterest_link',
                 'property_values' => null,
                 's_group' => 'social_link'
+            ],
+            [
+                'property' => 'google_mpa_lat_lng',
+                'property_values' => null,
+                's_group' => 'social_link'
             ]
         ];
 	    DB::table('settings')->insert($settings);

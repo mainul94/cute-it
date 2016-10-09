@@ -11,6 +11,7 @@ use App\Slide;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Mail;
 
 class WebController extends Controller
 {
@@ -28,6 +29,7 @@ class WebController extends Controller
 	/**
 	 * @param Request $request
 	 * @param Region $region
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
 	 */
 	public function map(Request $request, Region $region=null)
 	{
@@ -98,5 +100,25 @@ class WebController extends Controller
 		} else {
 			return view('web.category', compact('category'));
 		}
+	}
+
+
+	public function postContact(Request $request)
+	{
+		$this->validate($request, [
+			'name' => 'Required',
+			'email' => 'Required'
+		]);
+
+
+		$contact_email = setting('contact_email')->property_values;
+
+		Mail::send('emails.contact', ['data' => collect($request->all())], function ($m) use ($request, $contact_email) {
+			$m->from($request->get('email'), $request->get('name'));
+
+			$m->to($contact_email, 'Web Contact Form')->subject($request->get('subject'));
+		});
+
+		return redirect()->back()->with(['message'=>['type'=>'success','msg'=>'Your Message successfully send']]);
 	}
 }

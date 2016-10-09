@@ -20,6 +20,12 @@
 							<div class="col-md-12">
 								{!! $page->content !!}
 							</div>
+							<div class="col-md-12">
+
+								@if($page->slug == "contact")
+									@include('web._contact')
+								@endif
+							</div>
 						</div>
 					</article>
 				</div> <!-- /.col-md-12 -->
