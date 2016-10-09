@@ -34,7 +34,7 @@
 				target: $el.find('[name^=wd_feature_image]'),
 				multiple_val_attr:'data-image-id'
 			},function (el, val) {
-				$el.find('[name^=wd_feature_image]').setupThumbnail($el.find('.image_thumbnail'),val,true);
+				el.find('[name^=wd_feature_image]').setupThumbnail($(el.closest('.widget_slide_row')).find('.image_thumbnail'),val,true);
 			});
 			$el.find('[name^=wd_summery]').summernote({
 				height:100

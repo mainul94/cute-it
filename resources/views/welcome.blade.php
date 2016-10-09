@@ -2,6 +2,7 @@
 @push('title') Welcome @endpush
 @section('sections')
 	@include('layouts._partial._web._slide',['slide'=>$slide])
+	{{--Feature Category SLide--}}
 	@inject('category','\App\Category')
 	@php $show_feature = (int) setting('is_feature_news_show_in_home')->property_values;
 		$feature_slide_length = (int) setting('home_feature_slide_length')->property_values or 5;
@@ -14,4 +15,7 @@
 			'category'=>$feature_categories])
 		</div>
 	@endif
+	{{--//Feature Category SLide--}}
+	{{--Contact--}}
+
 @endsection

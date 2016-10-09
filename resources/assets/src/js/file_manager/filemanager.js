@@ -162,7 +162,6 @@ class FileManager {
 		$(this.args.target).val(target_value);
 		var ofset = $(this.args.target).offset();
 		var plusHeight = $(this.args.target).height();
-		console.log(plusHeight);
 		window.scrollTo(parseInt(ofset.top+plusHeight), parseInt(ofset.left));
 	}
 }

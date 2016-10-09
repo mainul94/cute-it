@@ -72,9 +72,3 @@
 		</div>
 	</div>
 </div>
-@section('footer_script')
-	@parent
-	<script>
-
-	</script>
-@endsection

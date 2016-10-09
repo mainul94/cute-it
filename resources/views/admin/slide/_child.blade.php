@@ -30,7 +30,7 @@
 					target: $el.find('[name^=image]'),
 					multiple_val_attr:'data-image-id'
 				},function (el, val) {
-					$el.find('[name^=image]').setupThumbnail($el.find('.image_thumbnail'),val,true);
+					el.find('[name^=image]').setupThumbnail($(el.closest('.slide_child_row')).find('.image_thumbnail'),val,true);
 				});
 		});
 		//////////////////////////////////////COPy/////////////
