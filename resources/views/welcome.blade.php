@@ -2,6 +2,12 @@
 @push('title') Welcome @endpush
 @section('sections')
 	@include('layouts._partial._web._slide',['slide'=>$slide])
+	{{--Welcome Mesage--}}
+	@php $welcome_msg = setting('welcome_message')->property_values @endphp
+	<div class="container">
+		{!! $welcome_msg !!}
+	</div>
+	{{--/Welcome Mesage--}}
 	{{--Feature Category SLide--}}
 	@inject('category','\App\Category')
 	@php $show_feature = (int) setting('is_feature_news_show_in_home')->property_values;
@@ -17,5 +23,10 @@
 	@endif
 	{{--//Feature Category SLide--}}
 	{{--Contact--}}
+	<div class="container">
+		<h1 class="section-title text-center">Keep in touch</h1>
+		@include('web._contact')
+	</div>
+	{{--/COntact--}}
 
 @endsection

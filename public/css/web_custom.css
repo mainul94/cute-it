@@ -95,4 +95,27 @@ p {
     .feature_slide .caption {
       margin-left: -15px; } }
 
+.supercat {
+  margin-top: 10px; }
+
+.supercattitle {
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  margin: 0 auto;
+  text-align: center;
+  display: table;
+  background-color: #2ea25f; }
+  .supercattitle a {
+    font-size: 20px;
+    color: white;
+    font-family: 'ralewayregular';
+    text-decoration: none;
+    line-height: 1.2;
+    height: 200px;
+    vertical-align: middle;
+    width: 200px;
+    display: table-cell;
+    padding: 0 30px; }
+
 /*# sourceMappingURL=web_custom.css.map */

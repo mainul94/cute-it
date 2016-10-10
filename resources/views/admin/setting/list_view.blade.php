@@ -11,6 +11,23 @@
 @push('page_title_left') <h1>Setting</h1>@endpush
 @section('content')
 	<div class="row">
+		{{--Home Company Address--}}
+		<div class="col-md-12">
+			<div class="x_panel">
+				<div class="x_title">
+					<h4>Home Company Address</h4>
+				</div>
+				<div class="x_content">
+					@php $welcome_message = setting('welcome_message') @endphp
+					{!! Form::model($welcome_message, ['action'=>['SettingController@update',$welcome_message->id], 'method'=> 'patch']) !!}
+					{!! Form::textarea('property_values',$welcome_message->property_values,['class'=>'form-control welcome_message']) !!}
+					<br>
+					{!! Form::submit('Save',['class'=>'btn btn-primary pull-right']) !!}
+					{!! Form::close() !!}
+				</div>
+			</div>
+		</div>
+		{{--/Home Company Address--}}
 		{{--Primary menu--}}
 		<div class="col-md-6">
 			<div class="x_panel">
@@ -239,6 +256,9 @@
 		getvalueForSelect2('.home_recent_news_category','categories',['id','title'],[],'id','title');
 		$('.company_address').summernote({
 			height:100
+		});
+		$('.welcome_message').summernote({
+			height:160
 		});
 	</script>
 @endsection
