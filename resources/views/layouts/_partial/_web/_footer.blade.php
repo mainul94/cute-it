@@ -33,11 +33,32 @@
 		</div> <!-- /.col-md-6 -->
 		<div class="col-md-4 col-sm-6">
 			<ul class="social">
-				<li><a href="#" class="fa fa-facebook"></a></li>
-				<li><a href="#" class="fa fa-twitter"></a></li>
-				<li><a href="#" class="fa fa-instagram"></a></li>
-				<li><a href="#" class="fa fa-linkedin"></a></li>
-				<li><a href="#" class="fa fa-rss"></a></li>
+				@php
+					$facebook = setting('facebook_link');
+					$twitter = setting('twitter_link');
+					$google_plus = setting('google_plus_link');
+					$youtube = setting('youtube_link');
+					$linkdin = setting('linkdin_link');
+					$pinterest = setting('pinterest_link');
+				@endphp
+				@if(!empty($facebook->property_values))
+					<li><a href="{{ $facebook->property_values }}" class="fa fa-facebook"></a></li>
+				@endif
+				@if(!empty($twitter->property_values))
+					<li><a href="{{ $twitter->property_values }}" class="fa fa-twitter"></a></li>
+				@endif
+				@if(!empty($google_plus->property_values))
+					<li><a href="{{ $google_plus->property_values }}" class="fa fa-google-plus"></a></li>
+				@endif
+				@if(!empty($youtube->property_values))
+					<li><a href="{{ $youtube->property_values }}" class="fa fa-youtube"></a></li>
+				@endif
+				@if(!empty($linkdin->property_values))
+					<li><a href="{{ $linkdin->property_values }}" class="fa fa-linkedin"></a></li>
+				@endif
+				@if(!empty($pinterest->property_values))
+					<li><a href="{{ $pinterest->property_values }}" class="fa fa-pinterest"></a></li>
+				@endif
 			</ul>
 		</div> <!-- /.col-md-6 -->
 	</div> <!-- /.row -->
