@@ -9,7 +9,8 @@
 <li class="{{ $has_child?'dropdown':'' }} {{ !empty($menu->url)? (preg_match('#^'.$menu->url.'?#i', $current_url)===1?'active':''):'#' }}">
 	<a class="{{ $has_child?'dropdown-toggle':'' }} {{ $menu->css_class  }}"
 	   {{ $has_child?'data-toggle=dropdown role=button aria-haspopup=true aria-expanded=false':'' }}
-	   href="{{ $menu->url }}">{{ $menu->title }} @if($has_child) <span class="caret"></span>@endif</a>
+	   href="{{ $menu->url }}"><i class="fa fa-circle"></i>{{ $menu->title }} @if($has_child) <span class="caret"></span>@endif</a>
+
 	@if($has_child)
 		<ul class="dropdown-menu">
 			@foreach($menu->children as $menu)

@@ -7,7 +7,7 @@
  */
 ?>
 @extends('layouts.web')
-@push('title') Category @endpush
+@push('title') {!! $category->title !!} @endpush
 @section('sections')
 	<section id="products" class="content-section">
 		@if(isset($category->slide_id))

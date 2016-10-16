@@ -1,0 +1,199 @@
+
+.portfolio-filters {
+  margin-bottom: 40px;
+  text-align: center;
+  font: 400 12px/21px sans-serif;
+  color: #DADADA
+}
+
+.portfolio-filters .portfolio-filter-item {
+  background-color: transparent;
+  border: 1px solid #eee;
+  cursor: pointer;
+  display: inline-block;
+  font: 400 13px "Raleway",sans-serif;
+  margin: 0 2px;
+  overflow: visible;
+  padding: 9px 15px;
+  position: relative;
+  transition: all 0.3s ease-in-out 0s;
+  color: #727272;
+  border-radius: 4px;
+  text-transform: uppercase
+}
+
+.portfolio-filters .portfolio-filter-item-active,.portfolio-filters .portfolio-filter-item:hover {
+  background-color: #13afeb;
+  border-color: #13afeb;
+  color: #fff !important
+}
+
+.portfolio-filters .portfolio-filter-item .filter-counter {
+  background: #626161;
+  border-radius: 3px;
+  color: #FFF;
+  font: 400 11px/18px "Open Sans", sans-serif;
+  margin: 0 auto;
+  padding: 4px 0;
+  text-align: center;
+  width: 34px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  -ms-filter: "alpha(Opacity=0)";
+  opacity: 0;
+  -webkit-transition: all .25s ease;
+  transition: all .25s ease
+}
+
+.portfolio-filters .portfolio-filter-item .filter-counter:before {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #626161;
+  display: none
+}
+
+.portfolio-filters .portfolio-filter-item:hover .filter-counter {
+  bottom: 30px;
+  -ms-filter: "alpha(Opacity=100)";
+  opacity: 1
+}
+
+.portfolio-filters .portfolio-filter-item:hover .filter-counter:before {
+  display: block
+}
+
+.portfolio-main {
+  position: relative;
+  margin: 0 auto;
+  min-height: 150px;
+  width: 100%;
+  visibility: visible!important;
+  clear: both
+}
+
+.portfolio-main ul {
+  padding: 0px;
+  margin: 0px
+}
+
+.portfolio-main ul li {
+  list-style: none
+}
+
+.portfolio-main .portfolio-item, .portfolio-main .portfolio2-item {
+  float: left;
+  width: 33.333333%;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  margin: 0
+}
+
+.portfolio-main .portfolio-item.last {
+  margin-right: 0px !important
+}
+
+.portfolio-main.two .portfolio-item, .portfolio-main.two .portfolio2-item {
+  width: 50%
+}
+
+.portfolio-main.four .portfolio-item, .portfolio-main.four .portfolio2-item {
+  width: 25%;
+  margin: 0px
+}
+
+.portfolio-main.five .portfolio-item, .portfolio-main.five .portfolio2-item {
+  width: 20%;
+  margin: 0px
+}
+
+.portfolio-main .portfolio-item .portfolio-caption-wrap {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  color: #fff;
+  opacity: 0;
+  text-align: center;
+  transition: all 300ms ease 0ms
+}
+
+.portfolio-main .portfolio-item:hover .portfolio-caption-wrap {
+  opacity: 1
+}
+
+.portfolio-item .portfolio-image {
+  width: 100%;
+  float: left;
+  overflow: hidden
+}
+
+.portfolio-item .portfolio-image img {
+  border: none;
+  margin: 0px;
+  padding: 0px;
+  float: left;
+  width: 100%;
+  transition: all 300ms ease 0ms
+}
+
+.portfolio-item:hover .portfolio-image img {
+  transform: scale(1.2)
+}
+
+.portfolio-item .portfolio-caption {
+  margin: 50px 30px 0;
+  display: inline-block;
+  opacity: 0
+}
+
+.portfolio-item:hover .portfolio-caption {
+  opacity: 1
+}
+
+.portfolio-item-wrapper {
+  float: left;
+  width: 100%
+}
+
+.portfolio-caption-title {
+  font-weight: bold;
+  font-size: 15px
+}
+
+.portfolio-caption-desc {
+  line-height: 15px;
+  margin-top: 10px
+}
+
+.portfolio-caption-desc p {
+  font-style: italic;
+  color: #aaa
+}
+
+.portfolio-item .linkfr {
+  position: absolute;
+  left: 50%;
+  top: 60%;
+  border: 1px solid rgba(255,255,255,0);
+  border-radius: 0px;
+  color: #eee;
+  opacity: 0;
+  transition: all 300ms ease 50ms;
+  margin-top: -20px;
+  min-width: 45px;
+  display: inline-block;
+  transform: scale(1.5)
+}

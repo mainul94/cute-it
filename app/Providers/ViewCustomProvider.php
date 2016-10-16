@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Menu;
+use App\Setting;
 use Bican\Roles\Models\Permission;
 use Bican\Roles\Models\Role;
 use Collective\Html\FormFacade as Form;
@@ -63,6 +64,10 @@ class ViewCustomProvider extends ServiceProvider
 
         view()->composer('admin.user.*', function ($view) {
            return $view->with('roles', Role::all());
+        });
+
+        view()->composer('*', function ($view) {
+           return $view->with('setting', new Setting());
         });
     }
 

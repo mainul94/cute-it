@@ -7,7 +7,7 @@
  */
 ?>
 @extends('layouts.web')
-@push('title') Article @endpush
+@push('title') {!! $article->title !!} @endpush
 @section('sections')
 	<div class="clearfix"></div>
 	<section class="content-section">
